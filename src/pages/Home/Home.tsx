@@ -1,9 +1,10 @@
 import React from "react";
+import Hero from "./Hero";
 
 const Home: React.FC = () => {
   return (
     <div>
-      <h1 style={{ textAlign: "center" }}>Home Page</h1>
+      <Hero />
     </div>
   );
 };
