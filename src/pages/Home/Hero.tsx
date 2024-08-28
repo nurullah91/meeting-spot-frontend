@@ -10,7 +10,7 @@ import "swiper/css/navigation";
 import "./hero.css";
 
 // import required modules
-import { Autoplay, Pagination, Navigation } from "swiper/modules";
+import { Autoplay } from "swiper/modules";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 const Hero: React.FC = () => {
@@ -18,16 +18,14 @@ const Hero: React.FC = () => {
     <div style={{ position: "relative", width: "100%" }}>
       <Swiper
         spaceBetween={30}
+        speed={1600}
+        loop={true}
         centeredSlides={true}
         autoplay={{
           delay: 2500,
           disableOnInteraction: false,
         }}
-        pagination={{
-          clickable: true,
-        }}
-        navigation={true}
-        modules={[Autoplay, Pagination, Navigation]}
+        modules={[Autoplay]}
         className="mySwiper"
       >
         <SwiperSlide>
