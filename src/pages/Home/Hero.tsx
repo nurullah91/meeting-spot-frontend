@@ -69,15 +69,26 @@ const Hero: React.FC = () => {
           alignItems: "center",
         }}
       >
-        <h1 style={{ fontSize: "64px", textAlign: "center" }}>
-          Book Your Ideal Meeting Room with Ease.
-        </h1>
-        <h3 style={{ fontSize: "32px", textAlign: "center" }}>
-          Efficient, hassle-free room booking for all your meeting needs
-        </h3>
-        <Link style={{ marginTop: "10px" }} to={"/meeting-rooms"}>
-          <Button>Book Now</Button>
-        </Link>
+        <div
+          style={{
+            width: "95%",
+            margin: "auto",
+            display: "flex",
+            flexDirection: "column",
+            justifyContent: "center",
+            alignItems: "center",
+          }}
+        >
+          <h1 style={{ fontSize: "64px", textAlign: "center" }}>
+            Book Your Ideal Meeting Room with Ease.
+          </h1>
+          <h3 style={{ fontSize: "32px", textAlign: "center" }}>
+            Efficient, hassle-free room booking for all your meeting needs
+          </h3>
+          <Link style={{ marginTop: "10px" }} to={"/meeting-rooms"}>
+            <Button>Book Now</Button>
+          </Link>
+        </div>
       </div>
     </div>
   );

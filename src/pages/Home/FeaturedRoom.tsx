@@ -24,7 +24,7 @@ const FeaturedRoom: React.FC = () => {
         subTitle="Explore our featured rooms and book your available slots anytime"
       />
 
-      <Row gutter={[20, 20]}>
+      <Row gutter={[30, 50]}>
         {roomsData?.data?.result?.map((room: TRoom) => (
           <Col span={24} md={{ span: 12 }} lg={{ span: 12 }} key={room._id}>
             <RoomCard room={room} />

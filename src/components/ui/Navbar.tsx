@@ -1,53 +1,62 @@
-import React, { useState } from "react";
-import type { MenuProps } from "antd";
-import { Menu } from "antd";
+import React from "react";
 
-type MenuItem = Required<MenuProps>["items"][number];
+import { NavLink } from "react-router-dom";
 
-const items: MenuItem[] = [
+type TMenuItem = {
+  label: string;
+  path: string;
+};
+
+const menuItems: TMenuItem[] = [
   {
     label: "Home",
-    key: "home",
+    path: "/",
   },
   {
-    label: "Meeting Room",
-    key: "meetingRoom",
+    label: "Rooms",
+    path: "/rooms",
   },
   {
     label: "About Us",
-    key: "aboutUs",
+    path: "/about-us",
   },
   {
     label: "Contact Us",
-    key: "contactUs",
+    path: "/contact-us",
   },
   {
     label: "Login",
-    key: "login",
+    path: "/login",
   },
 ];
 
 const Navbar: React.FC = () => {
-  const [current, setCurrent] = useState("mail");
-
-  const onClick: MenuProps["onClick"] = (e) => {
-    console.log("click ", e);
-    setCurrent(e.key);
-  };
-
   return (
-    <div
-      style={{
-        width: "95%",
-        margin: "0 auto",
-      }}
-    >
-      <Menu
-        onClick={onClick}
-        selectedKeys={[current]}
-        mode="horizontal"
-        items={items}
-      />
+    <div className="navbar">
+      <div
+        className="nav-link-container"
+        style={{
+          width: "95%",
+          margin: "0 auto",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          gap: "20px",
+        }}
+      >
+        {menuItems.map((item) => (
+          <div>
+            <NavLink
+              to={`${item.path}`}
+              className={({ isActive }) =>
+                isActive ? "active-route navItem" : "navItem"
+              }
+            >
+              {item.label}
+            </NavLink>
+          </div>
+        ))}
+      </div>
     </div>
   );
 };

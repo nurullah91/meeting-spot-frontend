@@ -1,8 +1,47 @@
+/* Nav bar related styles */
+.navbar {
+  padding: 20px 0;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 20;
+  width: 100%;
+  backdrop-filter: blur(5px);
+  background-color: #75dce072;
+}
+.nav-link-container {
+  flex-direction: column;
+}
+.navItem {
+  text-decoration: none;
+  font-weight: 600;
+  color: #fdfdfd;
+  padding-bottom: 3px;
+  position: relative;
+}
+.active-route {
+  border-bottom: 3px solid #f1c503;
+}
+.navItem::after {
+  content: "";
+  width: 0;
+  height: 3px;
+  background-color: #f1c503;
+  position: absolute;
+  bottom: -3px;
+  left: 0;
+  transition: all 0.3s ease-in-out;
+}
+.navItem:hover::after {
+  width: 100%;
+}
+/* service card styles */
 .serviceCard {
   border: 2px solid #457b9d;
   padding: 40px 30px;
 }
 
+/* Room card styles */
 .roomCard {
   border-radius: 10px;
   background: #e8f5e9;
@@ -48,6 +87,7 @@
 
 .roomCard:hover::before {
   opacity: 1; /* Show on hover */
+  animation: 1s spin linear infinite;
 }
 @keyframes spin {
   from {
@@ -55,5 +95,12 @@
   }
   to {
     --angle: 360deg;
+  }
+}
+
+/* Tablet responsive breakpoints */
+@media only screen and (min-width: 768px) {
+  .nav-link-container {
+    flex-direction: row;
   }
 }
