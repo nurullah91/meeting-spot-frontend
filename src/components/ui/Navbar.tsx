@@ -45,7 +45,7 @@ const Navbar: React.FC = () => {
         }}
       >
         {menuItems.map((item) => (
-          <div>
+          <div key={item.path}>
             <NavLink
               to={`${item.path}`}
               className={({ isActive }) =>

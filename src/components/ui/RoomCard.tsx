@@ -21,9 +21,10 @@ const RoomCard: React.FC<TRoomCardProps> = ({ room }) => {
       />
       <div className="cardInfo">
         <h1>{room.name}</h1>
-        <h3>Capacity: {room.capacity}</h3>
+        <h3>Capacity: {room.capacity} Person</h3>
         <h3 style={{ marginBottom: "10px" }}>
-          Price per Slot: {room.pricePerSlot}
+          Price per Slot:{" "}
+          <span style={{ color: "orangered" }}>${room.pricePerSlot}</span>
         </h3>
 
         <Link to={`/rooms/${room._id}`}>
