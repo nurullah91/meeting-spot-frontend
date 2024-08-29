@@ -8,7 +8,7 @@ type THeadingProps = {
 const SectionHeading: React.FC<THeadingProps> = ({ title, subTitle }) => {
   return (
     <div
-      style={{ textAlign: "center", marginTop: "20px", marginBottom: "10px" }}
+      style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}
     >
       <h2 style={{ fontSize: "32px" }}>{title}</h2>
       <h3 style={{ fontSize: "24px" }}>{subTitle}</h3>

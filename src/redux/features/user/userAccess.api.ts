@@ -13,7 +13,7 @@ const userAccessApi = baseApi.injectEndpoints({
         }
 
         return {
-          url: "/students",
+          url: "/rooms",
           method: "GET",
           params: params,
         };
