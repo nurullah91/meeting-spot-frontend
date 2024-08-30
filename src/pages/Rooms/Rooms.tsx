@@ -1,16 +1,21 @@
 import React, { useEffect, useState } from "react";
 import { useGetAllRoomsQuery } from "../../redux/features/user/userAccess.api";
-import { Col, Input, Pagination, Row, Spin } from "antd";
+import { Button, Col, Input, Pagination, Row, Select, Spin } from "antd";
 import { TRoom } from "../../types";
 import RoomCard from "../../components/ui/RoomCard";
 import CustomContainer from "../../components/CustomContainer";
+const { Option } = Select;
 
 const Rooms: React.FC = () => {
-  const [currentPage, setCurrentPage] = useState(1);
-  const [search, setSearch] = useState("");
-  const [debouncedSearch, setDebouncedSearch] = useState(search);
+  const [currentPage, setCurrentPage] = useState<number>(1);
+  const [search, setSearch] = useState<string>("");
+  const [minCapacity, setMinCapacity] = useState<number | undefined>(undefined);
+  const [minPrice, setMinPrice] = useState<number | undefined>(undefined);
+  const [maxPrice, setMaxPrice] = useState<number | undefined>(undefined);
+  const [sortOrder, setSortOrder] = useState<string | undefined>(undefined);
 
-  // debounce the search input
+  // debounce the search functionality
+  const [debouncedSearch, setDebouncedSearch] = useState(search);
   useEffect(() => {
     const handler = setTimeout(() => {
       setDebouncedSearch(search);
@@ -22,12 +27,26 @@ const Rooms: React.FC = () => {
     };
   }, [search]);
 
-  // Fetch Room Data with pagination and search
-  const { data: allRoomsData, isLoading } = useGetAllRoomsQuery([
+  // Filter out query params undefined value
+  const queryParams = [
     { name: "page", value: currentPage },
     { name: "limit", value: 10 },
     { name: "searchTerm", value: debouncedSearch },
-  ]);
+    { name: "capacity", value: minCapacity },
+    { name: "minPrice", value: minPrice },
+    { name: "maxPrice", value: maxPrice },
+    { name: "sort", value: sortOrder },
+  ].filter((item) => item.value !== undefined);
+  // Fetch Room Data with pagination and search
+  const { data: allRoomsData, isLoading } = useGetAllRoomsQuery(queryParams);
+
+  const clearFilters = () => {
+    setSearch("");
+    setMinCapacity(undefined);
+    setMinCapacity(undefined);
+    setMaxPrice(undefined);
+    setSortOrder(undefined);
+  };
 
   return (
     <div style={{ margin: "70px 0px" }}>
@@ -44,6 +63,41 @@ const Rooms: React.FC = () => {
             onChange={(e) => setSearch(e.target.value)}
             style={{ marginBottom: "20px" }}
           />
+          {/* Filter Options */}
+
+          <div style={{ display: "flex", gap: "10px", marginBottom: "20px" }}>
+            <Input
+              type="text"
+              placeholder="Min Capacity"
+              value={minCapacity}
+              onChange={(e) => setMinCapacity(Number(e.target.value))}
+              style={{ width: "150px" }}
+            />
+            <Input
+              type="text"
+              placeholder="Min Price"
+              value={minPrice}
+              onChange={(e) => setMinPrice(Number(e.target.value))}
+              style={{ width: "150px" }}
+            />
+            <Input
+              type="text"
+              placeholder="Max Price"
+              value={maxPrice}
+              onChange={(e) => setMaxPrice(Number(e.target.value))}
+              style={{ width: "150px" }}
+            />
+            <Select
+              placeholder="Sort By"
+              value={sortOrder}
+              onChange={(value) => setSortOrder(value)}
+              style={{ width: "150px" }}
+            >
+              <Option value="pricePerSlot">Price: Low to High</Option>
+              <Option value="-pricePerSlot">Price: High to Low</Option>
+            </Select>
+            <Button onClick={clearFilters}>Clear Filters</Button>
+          </div>
 
           {/* Loading animation */}
           {isLoading && (
