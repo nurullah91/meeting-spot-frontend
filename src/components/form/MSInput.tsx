@@ -9,7 +9,7 @@ type TInputProps = {
 
 const MSInput = ({ label, name, type }: TInputProps) => {
   return (
-    <div style={{ marginBottom: "15px" }}>
+    <>
       <Controller
         name={name}
         render={({ field, fieldState: { error } }) => (
@@ -19,7 +19,7 @@ const MSInput = ({ label, name, type }: TInputProps) => {
           </Form.Item>
         )}
       />
-    </div>
+    </>
   );
 };
 
