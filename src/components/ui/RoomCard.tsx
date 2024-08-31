@@ -7,7 +7,6 @@ type TRoomCardProps = {
   room: TRoom;
 };
 const RoomCard: React.FC<TRoomCardProps> = ({ room }) => {
-  console.log(room);
   return (
     <div className="roomCard">
       <img

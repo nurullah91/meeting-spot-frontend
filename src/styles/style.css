@@ -68,10 +68,10 @@
   width: 100%;
   background-image: conic-gradient(
     from var(--angle),
-    #ff4545,
-    #00ff99,
-    #006aff,
-    #ff4545
+    #00ffff,
+    #ff00ff,
+    #8000ff,
+    #00ffff
   );
   top: 50%;
   left: 50%;
