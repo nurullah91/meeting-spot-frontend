@@ -1,6 +1,5 @@
 /* Nav bar related styles */
 .navbar {
-  padding: 20px 0;
   position: fixed;
   top: 0;
   left: 0;
@@ -8,6 +7,13 @@
   width: 100%;
   backdrop-filter: blur(5px);
   background-color: #75dce072;
+}
+.navContent {
+  width: 95%;
+  margin: 0 auto;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 .nav-link-container {
   flex-direction: column;
@@ -100,9 +106,24 @@
   }
 }
 
+.dashboard-content {
+  padding: 0 24px;
+  min-height: 100hv;
+  margin-top: 60px;
+  margin-left: 80px;
+  background-color: #00ffff;
+}
+
 /* Tablet responsive breakpoints */
 @media only screen and (min-width: 768px) {
   .nav-link-container {
     flex-direction: row;
+  }
+}
+
+/* Large screen breakpoint */
+@media only screen and (min-width: 992px) {
+  .dashboard-content {
+    margin-left: 200px;
   }
 }

@@ -8,6 +8,12 @@ import AboutUs from "../pages/AboutUs";
 import ContactUs from "../pages/ContactUs";
 import Login from "../pages/Login";
 import SignUp from "../pages/Signup";
+import DashboardLayout from "../components/layout/DashboardLayout";
+import WelcomeAdmin from "../pages/Admin/WelcomeAdmin";
+import RoomManagement from "../pages/Admin/RoomManagement";
+import SlotsManagement from "../pages/Admin/SlotsManagement";
+import BookingManagement from "../pages/Admin/BookingManagement";
+import UserManagement from "../pages/Admin/UserManagement";
 
 const router = createBrowserRouter([
   {
@@ -34,6 +40,33 @@ const router = createBrowserRouter([
       {
         path: "contact-us",
         element: <ContactUs />,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: <DashboardLayout />,
+    errorElement: <Error />,
+    children: [
+      {
+        path: "/dashboard",
+        element: <WelcomeAdmin />,
+      },
+      {
+        path: "room-management",
+        element: <RoomManagement />,
+      },
+      {
+        path: "slots-management",
+        element: <SlotsManagement />,
+      },
+      {
+        path: "booking-management",
+        element: <BookingManagement />,
+      },
+      {
+        path: "user-management",
+        element: <UserManagement />,
       },
     ],
   },
