@@ -23,12 +23,12 @@ const Login: React.FC = () => {
 
     try {
       const res = await login(data);
-
+      console.log(res);
       if (res.error) {
         toast.error(res?.error?.data?.message, { id: toastId });
       } else if (res.data.token) {
         const user = verifyToken(res.data.token) as TUser;
-        dispatch(setUser({ user, token: res.data.token }));
+        dispatch(setUser({ user: res?.data?.data, token: res.data.token }));
         if (user.role === "admin") {
           toast.success(res.data.message, { id: toastId });
           navigate("/dashboard");

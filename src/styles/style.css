@@ -8,15 +8,34 @@
   backdrop-filter: blur(5px);
   background-color: #75dce072;
 }
+.menuTriggerButton {
+  display: block;
+}
 .navContent {
   width: 95%;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
   align-items: center;
+  position: relative;
 }
 .nav-link-container {
   flex-direction: column;
+  position: absolute;
+  top: 59px;
+  left: 62px;
+  background-color: #75dce072;
+  width: 200px;
+  align-items: start;
+  padding: 20px 15px;
+  justify-content: center;
+  gap: 20px;
+}
+.openedNav {
+  display: flex;
+}
+.closedNav {
+  display: none;
 }
 .navItem {
   text-decoration: none;
@@ -114,10 +133,93 @@
   background-color: #00ffff;
 }
 
+/* Room Details Page styles */
+.room-details-container {
+  margin: 20px;
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.image-gallery {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+
+.image-gallery img {
+  width: 100%;
+  max-width: 250px;
+  height: auto;
+  border-radius: 8px;
+  object-fit: cover;
+}
+
+.room-info {
+  margin-bottom: 20px;
+}
+
+.room-info h1 {
+  margin-bottom: 15px;
+  font-size: 24px;
+  color: #333;
+}
+
+.room-info p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: #666;
+}
+
+.book-now-button {
+  display: block;
+  margin: 20px 0;
+  width: 100%;
+  max-width: 200px;
+  background-color: #4caf50;
+  border-color: #4caf50;
+}
+
+.book-now-button:hover {
+  background-color: #45a049;
+  border-color: #45a049;
+}
+
 /* Tablet responsive breakpoints */
 @media only screen and (min-width: 768px) {
   .nav-link-container {
     flex-direction: row;
+    position: static;
+    width: 100%;
+    background-color: transparent;
+  }
+
+  .menuTriggerButton {
+    display: none;
+  }
+  .closedNav {
+    display: flex;
+  }
+
+  .room-details-container {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+  }
+
+  .image-gallery {
+    flex-basis: 50%;
+    margin-right: 20px;
+  }
+
+  .room-info {
+    flex-basis: 50%;
+  }
+
+  .book-now-button {
+    align-self: flex-start;
   }
 }
 
@@ -125,5 +227,17 @@
 @media only screen and (min-width: 992px) {
   .dashboard-content {
     margin-left: 200px;
+  }
+
+  .room-details-container {
+    padding: 40px;
+  }
+
+  .room-info h1 {
+    font-size: 28px;
+  }
+
+  .room-info p {
+    font-size: 18px;
   }
 }

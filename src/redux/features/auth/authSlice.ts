@@ -4,10 +4,11 @@ import { RootState } from "../../store";
 export type TUser = {
   email: string;
   phone: string;
+  address: string;
+  isDeleted: boolean;
+  name: string;
   role: string;
-  userId: string;
-  exp: number;
-  iat: number;
+  _id: string;
 };
 
 type TAuthState = {

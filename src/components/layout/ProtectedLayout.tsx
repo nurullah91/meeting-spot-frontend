@@ -26,11 +26,18 @@ const ProtectedLayout = ({ children, role }: TProtectedRouteProps) => {
   const user = verifyToken(token) as TUser | undefined;
 
   // If token is invalid or user role does not match, log out and redirect to login
-  if (!user || role !== user.role) {
+  if (!user) {
     dispatch(logout());
     return <Navigate to="/login" replace={true} />;
   }
 
+  // Role-based access control
+  if (
+    (role === "admin" && user.role !== "admin") || // If route is for admin and user is not admin
+    (role === "user" && user.role !== "user" && user.role !== "admin") // If route is for user and user is not user or admin
+  ) {
+    return <Navigate to="/unauthorized" replace={true} />; // Redirect to an unauthorized page or login
+  }
   // If everything is fine, render the children
   return <>{children}</>;
 };

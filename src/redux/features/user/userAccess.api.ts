@@ -19,7 +19,36 @@ const userAccessApi = baseApi.injectEndpoints({
         };
       },
     }),
+    getAllAvailableSlots: builder.query({
+      query: (args) => {
+        const params = new URLSearchParams();
+        if (args) {
+          args.forEach((item: TQueryParam) => {
+            params.append(item.name, item.value as string);
+          });
+        }
+
+        return {
+          url: "/slots/availability",
+          method: "GET",
+          params: params,
+        };
+      },
+      providesTags: ["slots"],
+    }),
+    getSingleRoom: builder.query({
+      query: (roomId: string) => {
+        return {
+          url: `/rooms/${roomId}`,
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
-export const { useGetAllRoomsQuery } = userAccessApi;
+export const {
+  useGetAllRoomsQuery,
+  useGetSingleRoomQuery,
+  useGetAllAvailableSlotsQuery,
+} = userAccessApi;

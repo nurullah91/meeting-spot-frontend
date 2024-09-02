@@ -5,16 +5,31 @@ type TInputProps = {
   type: string;
   name: string;
   label?: string;
+  defaultValue?: string;
+  disabled?: boolean;
 };
 
-const MSInput = ({ label, name, type }: TInputProps) => {
+const MSInput = ({
+  label,
+  name,
+  type,
+  defaultValue,
+  disabled,
+}: TInputProps) => {
   return (
     <>
       <Controller
         name={name}
         render={({ field, fieldState: { error } }) => (
           <Form.Item label={label}>
-            <Input {...field} type={type} id={name} size="large" />
+            <Input
+              {...field}
+              type={type}
+              id={name}
+              size="large"
+              defaultValue={defaultValue}
+              disabled={disabled}
+            />
             {error && <small style={{ color: "red" }}>{error.message}</small>}
           </Form.Item>
         )}

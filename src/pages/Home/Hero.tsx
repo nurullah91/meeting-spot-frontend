@@ -85,7 +85,7 @@ const Hero: React.FC = () => {
           <h3 style={{ fontSize: "32px", textAlign: "center" }}>
             Efficient, hassle-free room booking for all your meeting needs
           </h3>
-          <Link style={{ marginTop: "10px" }} to={"/meeting-rooms"}>
+          <Link style={{ marginTop: "10px" }} to={"/rooms"}>
             <Button>Book Now</Button>
           </Link>
         </div>

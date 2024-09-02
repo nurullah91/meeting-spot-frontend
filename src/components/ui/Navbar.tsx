@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import logo from "../../assets/images/crop-logo.png";
 import { Link, NavLink } from "react-router-dom";
 import { useAppDispatch, useAppSelector } from "../../redux/hooks";
@@ -6,6 +6,7 @@ import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 import { Button, Dropdown, MenuProps } from "antd";
 import { FaUserCircle } from "react-icons/fa";
 import { toast } from "sonner";
+import { HiMenuAlt1 } from "react-icons/hi";
 
 type TMenuItem = {
   label: string;
@@ -32,6 +33,7 @@ const menuItems: TMenuItem[] = [
 ];
 
 const Navbar: React.FC = () => {
+  const [isOpenMenu, setIsOpenMenu] = useState(false);
   const loggedInUser = useAppSelector(useCurrentUser);
   const dispatch = useAppDispatch();
 
@@ -67,27 +69,30 @@ const Navbar: React.FC = () => {
       ),
     },
   ];
+  console.log(isOpenMenu);
 
   const items: MenuProps["items"] =
     loggedInUser?.role === "admin" ? adminItems : userItems;
   return (
     <div className="navbar">
       <div className="navContent">
-        <div>
+        <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
+          <Button
+            ghost
+            size="middle"
+            className="menuTriggerButton"
+            onClick={() => setIsOpenMenu(!isOpenMenu)}
+          >
+            <HiMenuAlt1 style={{ fontSize: "20px" }} />
+          </Button>
           <Link to={"/"}>
             <img style={{ width: "100px" }} src={logo} alt="logo" />
           </Link>
         </div>
         <div
-          className="nav-link-container"
-          style={{
-            width: "95%",
-            margin: "0 auto",
-            display: "flex",
-            alignItems: "center",
-            justifyContent: "center",
-            gap: "20px",
-          }}
+          className={`nav-link-container ${
+            isOpenMenu ? "openedNav" : "closedNav"
+          }`}
         >
           {menuItems.map((item) => (
             <div key={item.path}>
@@ -106,7 +111,7 @@ const Navbar: React.FC = () => {
           {loggedInUser?.role ? (
             <div>
               <Dropdown menu={{ items }} trigger={["click"]}>
-                <FaUserCircle style={{ fontSize: "30px" }} />
+                <FaUserCircle style={{ fontSize: "30px", color: "#264653" }} />
               </Dropdown>
             </div>
           ) : (

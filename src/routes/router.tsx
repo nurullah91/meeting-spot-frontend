@@ -17,6 +17,7 @@ import UserManagement from "../pages/Admin/UserManagement";
 import RoomDetails from "../pages/Rooms/RoomDetails";
 import MyBookings from "../pages/User/MyBookings";
 import ProtectedLayout from "../components/layout/ProtectedLayout";
+import Booking from "../pages/User/Booking";
 
 const router = createBrowserRouter([
   {
@@ -33,6 +34,14 @@ const router = createBrowserRouter([
         element: <Rooms />,
       },
       {
+        path: "booking",
+        element: (
+          <ProtectedLayout role="user">
+            <Booking />
+          </ProtectedLayout>
+        ),
+      },
+      {
         path: "my-bookings",
         element: (
           <ProtectedLayout role="user">
@@ -42,7 +51,12 @@ const router = createBrowserRouter([
       },
       {
         path: "rooms/:roomId",
-        element: <RoomDetails />,
+        element: (
+          <ProtectedLayout role="user">
+            {" "}
+            <RoomDetails />
+          </ProtectedLayout>
+        ),
       },
       {
         path: "about-us",
