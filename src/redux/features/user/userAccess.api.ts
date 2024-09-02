@@ -44,6 +44,16 @@ const userAccessApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    crateBooking: builder.mutation({
+      query: (data) => {
+        return {
+          url: "/bookings",
+          method: "POST",
+          body: data,
+        };
+      },
+    }),
   }),
 });
 
@@ -51,4 +61,5 @@ export const {
   useGetAllRoomsQuery,
   useGetSingleRoomQuery,
   useGetAllAvailableSlotsQuery,
+  useCrateBookingMutation,
 } = userAccessApi;

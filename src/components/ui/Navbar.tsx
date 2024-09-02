@@ -69,7 +69,6 @@ const Navbar: React.FC = () => {
       ),
     },
   ];
-  console.log(isOpenMenu);
 
   const items: MenuProps["items"] =
     loggedInUser?.role === "admin" ? adminItems : userItems;

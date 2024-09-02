@@ -34,7 +34,7 @@ const router = createBrowserRouter([
         element: <Rooms />,
       },
       {
-        path: "booking",
+        path: "booking/:roomId",
         element: (
           <ProtectedLayout role="user">
             <Booking />

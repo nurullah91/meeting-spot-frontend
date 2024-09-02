@@ -40,7 +40,7 @@ const RoomDetails: React.FC = () => {
           className="book-now-button"
           type="primary"
           size="large"
-          onClick={() => navigate("/booking")}
+          onClick={() => navigate(`/booking/${data?.data?._id}`)}
         >
           Book Now
         </Button>

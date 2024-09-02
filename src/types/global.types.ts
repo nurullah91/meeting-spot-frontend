@@ -16,3 +16,12 @@ export type TRoom = {
   updatedAt: string;
   _id: string;
 };
+
+export type TSlot = {
+  date: string;
+  endTime: string;
+  isBooked: boolean;
+  room: TRoom;
+  startTime: string;
+  _id: string;
+};

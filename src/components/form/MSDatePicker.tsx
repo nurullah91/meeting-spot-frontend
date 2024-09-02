@@ -1,22 +1,20 @@
-import { Form, Input } from "antd";
+import { DatePicker, Form } from "antd";
 import { Controller } from "react-hook-form";
-
+import moment from "moment";
 type TInputProps = {
-  type: string;
   name: string;
   label?: string;
   defaultValue?: string;
-  readOnly?: boolean;
+  value?: string;
   disabled?: boolean;
+  onValueChange: (date: moment.Moment | null) => void;
 };
 
-const MSInput = ({
+const MSDatePicker = ({
   label,
   name,
-  type,
-  defaultValue,
   disabled,
-  readOnly,
+  onValueChange,
 }: TInputProps) => {
   return (
     <>
@@ -24,14 +22,16 @@ const MSInput = ({
         name={name}
         render={({ field, fieldState: { error } }) => (
           <Form.Item label={label}>
-            <Input
+            <DatePicker
               {...field}
-              type={type}
+              onChange={onValueChange}
+              disabledDate={(current) =>
+                current && current < moment().endOf("day")
+              }
               id={name}
               size="large"
-              defaultValue={defaultValue}
-              readOnly={readOnly}
               disabled={disabled}
+              style={{ width: "100%" }}
             />
             {error && <small style={{ color: "red" }}>{error.message}</small>}
           </Form.Item>
@@ -41,4 +41,4 @@ const MSInput = ({
   );
 };
 
-export default MSInput;
+export default MSDatePicker;
