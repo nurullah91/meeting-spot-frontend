@@ -14,6 +14,9 @@ import RoomManagement from "../pages/Admin/RoomManagement";
 import SlotsManagement from "../pages/Admin/SlotsManagement";
 import BookingManagement from "../pages/Admin/BookingManagement";
 import UserManagement from "../pages/Admin/UserManagement";
+import RoomDetails from "../pages/Rooms/RoomDetails";
+import MyBookings from "../pages/User/MyBookings";
+import ProtectedLayout from "../components/layout/ProtectedLayout";
 
 const router = createBrowserRouter([
   {
@@ -28,6 +31,18 @@ const router = createBrowserRouter([
       {
         path: "rooms",
         element: <Rooms />,
+      },
+      {
+        path: "my-bookings",
+        element: (
+          <ProtectedLayout role="user">
+            <MyBookings />
+          </ProtectedLayout>
+        ),
+      },
+      {
+        path: "rooms/:roomId",
+        element: <RoomDetails />,
       },
       {
         path: "about-us",
@@ -45,16 +60,29 @@ const router = createBrowserRouter([
   },
   {
     path: "dashboard",
-    element: <DashboardLayout />,
+    element: (
+      <ProtectedLayout role="admin">
+        {" "}
+        <DashboardLayout />
+      </ProtectedLayout>
+    ),
     errorElement: <Error />,
     children: [
       {
         path: "/dashboard",
-        element: <WelcomeAdmin />,
+        element: (
+          <ProtectedLayout role="admin">
+            <WelcomeAdmin />,
+          </ProtectedLayout>
+        ),
       },
       {
         path: "room-management",
-        element: <RoomManagement />,
+        element: (
+          <ProtectedLayout role="admin">
+            <RoomManagement />,
+          </ProtectedLayout>
+        ),
       },
       {
         path: "slots-management",
@@ -62,11 +90,19 @@ const router = createBrowserRouter([
       },
       {
         path: "booking-management",
-        element: <BookingManagement />,
+        element: (
+          <ProtectedLayout role="admin">
+            <BookingManagement />,
+          </ProtectedLayout>
+        ),
       },
       {
         path: "user-management",
-        element: <UserManagement />,
+        element: (
+          <ProtectedLayout role="admin">
+            <UserManagement />,
+          </ProtectedLayout>
+        ),
       },
     ],
   },

@@ -1,8 +1,8 @@
 import React from "react";
 import logo from "../../assets/images/crop-logo.png";
 import { Link, NavLink } from "react-router-dom";
-import { useAppSelector } from "../../redux/hooks";
-import { useCurrentUser } from "../../redux/features/auth/authSlice";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
+import { logout, useCurrentUser } from "../../redux/features/auth/authSlice";
 import { Button, Dropdown, MenuProps } from "antd";
 import { FaUserCircle } from "react-icons/fa";
 import { toast } from "sonner";
@@ -33,18 +33,16 @@ const menuItems: TMenuItem[] = [
 
 const Navbar: React.FC = () => {
   const loggedInUser = useAppSelector(useCurrentUser);
-  const user = {
-    role: "user",
-  };
+  const dispatch = useAppDispatch();
 
   const handleLogout = () => {
-    console.log("userLogged out");
+    dispatch(logout());
     toast.success("Log out successful");
   };
   const adminItems: MenuProps["items"] = [
     {
       key: "dashboard",
-      label: "Dashboard",
+      label: <Link to={"/dashboard"}>Dashboard</Link>,
     },
     {
       key: "logout",
@@ -58,7 +56,7 @@ const Navbar: React.FC = () => {
   const userItems: MenuProps["items"] = [
     {
       key: "myBookings",
-      label: "My Bookings",
+      label: <Link to={"/my-bookings"}>My Bookings</Link>,
     },
     {
       key: "logout",
@@ -71,7 +69,7 @@ const Navbar: React.FC = () => {
   ];
 
   const items: MenuProps["items"] =
-    user.role === "admin" ? adminItems : userItems;
+    loggedInUser?.role === "admin" ? adminItems : userItems;
   return (
     <div className="navbar">
       <div className="navContent">

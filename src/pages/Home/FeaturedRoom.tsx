@@ -16,7 +16,6 @@ const FeaturedRoom: React.FC = () => {
       value: 4,
     },
   ]);
-  console.log(roomsData);
   return (
     <div>
       <SectionHeading

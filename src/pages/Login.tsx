@@ -9,26 +9,36 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../Schemas/userSchema";
 import { useLoginMutation } from "../redux/features/auth/authApi";
 import { toast } from "sonner";
+import { useAppDispatch } from "../redux/hooks";
+import { verifyToken } from "../utils/verifyToken";
+import { setUser, TUser } from "../redux/features/auth/authSlice";
 
 const Login: React.FC = () => {
   const [login] = useLoginMutation();
   const navigate = useNavigate();
+  const dispatch = useAppDispatch();
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Loading...");
-    console.log(data);
+
     try {
       const res = await login(data);
-      console.log(res);
+
       if (res.error) {
         toast.error(res?.error?.data?.message, { id: toastId });
-      } else if (res.data.success) {
-        toast.success(res.data.message, { id: toastId });
-        navigate("/dashboard");
+      } else if (res.data.token) {
+        const user = verifyToken(res.data.token) as TUser;
+        dispatch(setUser({ user, token: res.data.token }));
+        if (user.role === "admin") {
+          toast.success(res.data.message, { id: toastId });
+          navigate("/dashboard");
+        } else {
+          toast.success(res.data.message, { id: toastId });
+          navigate("/");
+        }
       }
     } catch (error) {
       toast.error("Something went wrong", { id: toastId });
-      console.log(error);
     }
   };
   return (
