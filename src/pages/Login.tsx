@@ -11,7 +11,8 @@ import { useLoginMutation } from "../redux/features/auth/authApi";
 import { toast } from "sonner";
 import { useAppDispatch } from "../redux/hooks";
 import { verifyToken } from "../utils/verifyToken";
-import { setUser, TUser } from "../redux/features/auth/authSlice";
+import { setUser } from "../redux/features/auth/authSlice";
+import { TUser } from "../types";
 
 const Login: React.FC = () => {
   const [login] = useLoginMutation();
@@ -22,10 +23,10 @@ const Login: React.FC = () => {
     const toastId = toast.loading("Loading...");
 
     try {
-      const res = await login(data);
-      console.log(res);
+      const res = await login(data as { email: string; password: string });
+
       if (res.error) {
-        toast.error(res?.error?.data?.message, { id: toastId });
+        toast.error("Something went wrong", { id: toastId });
       } else if (res.data.token) {
         const user = verifyToken(res.data.token) as TUser;
         dispatch(setUser({ user: res?.data?.data, token: res.data.token }));

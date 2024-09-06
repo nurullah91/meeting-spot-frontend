@@ -53,11 +53,20 @@ export type TSlot = {
   _id: string;
 };
 export type TUser = {
+  name: string;
   email: string;
   phone: string;
+  password?: string;
   address: string;
   isDeleted: boolean;
-  name: string;
   role: string;
   _id: string;
+};
+
+export type TLoginData = {
+  data: TUser;
+  message: string;
+  success: boolean;
+  token: string;
+  statusCode: number;
 };

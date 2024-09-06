@@ -1,0 +1,30 @@
+.checkout-container {
+  max-width: 600px;
+  margin: 100px auto;
+  padding: 20px;
+}
+
+.ant-card {
+  margin-bottom: 20px;
+}
+
+.ant-form-item {
+  margin-bottom: 20px;
+}
+
+/* button {
+  display: block;
+  width: 100%;
+} */
+
+@media only screen and (min-width: 768px) {
+  .checkout-container {
+    max-width: 500px;
+  }
+}
+
+@media only screen and (min-width: 992px) {
+  .checkout-container {
+    max-width: 600px;
+  }
+}

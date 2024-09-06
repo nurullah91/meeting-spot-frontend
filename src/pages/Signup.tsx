@@ -15,18 +15,17 @@ const SignUp: React.FC = () => {
 
   const onSubmit: SubmitHandler<FieldValues> = async (data) => {
     const toastId = toast.loading("Loading...");
-    console.log(data);
+
     try {
       const res = await signUp(data);
-      console.log(res);
+
       if (res.error) {
-        toast.error(res?.error?.data?.message, { id: toastId });
+        toast.error("Something went wrong", { id: toastId });
       } else {
-        toast.success("Done", { id: toastId });
+        toast.success("User created successfully", { id: toastId });
       }
     } catch (error) {
       toast.error("Something went wrong", { id: toastId });
-      console.log(error);
     }
   };
   return (

@@ -13,8 +13,6 @@ const RoomDetails: React.FC = () => {
       <div className="room-details-container" style={{ margin: "100px 0px" }}>
         <div className="image-gallery">
           <img src={data?.data?.img} alt="Room Image" />
-          <img src={data?.data?.img} alt="Room Image" />
-          <img src={data?.data?.img} alt="Room Image" />
         </div>
 
         <div className="room-info">

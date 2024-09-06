@@ -18,6 +18,7 @@ import RoomDetails from "../pages/Rooms/RoomDetails";
 import MyBookings from "../pages/User/MyBookings";
 import ProtectedLayout from "../components/layout/ProtectedLayout";
 import Booking from "../pages/User/Booking";
+import Checkout from "../pages/User/Checkout";
 
 const router = createBrowserRouter([
   {
@@ -38,6 +39,14 @@ const router = createBrowserRouter([
         element: (
           <ProtectedLayout role="user">
             <Booking />
+          </ProtectedLayout>
+        ),
+      },
+      {
+        path: "booking/:roomId/checkout",
+        element: (
+          <ProtectedLayout role="user">
+            <Checkout />
           </ProtectedLayout>
         ),
       },

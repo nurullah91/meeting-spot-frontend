@@ -63,7 +63,6 @@ const Rooms: React.FC = () => {
   };
 
   const onSubmit: SubmitHandler<FieldValues> = (data) => {
-    console.log(data);
     if (data.minCapacity) {
       setMinCapacity(Number(data.minCapacity));
     } else if (data.minCapacity === undefined) {

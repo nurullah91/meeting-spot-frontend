@@ -1,28 +1,29 @@
 import React, { useState } from "react";
 import { Button, Divider, Row, Col } from "antd";
-import { useAppSelector } from "../../redux/hooks";
+import { useAppDispatch, useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 
 import {
-  useCrateBookingMutation,
   useGetAllAvailableSlotsQuery,
+  useGetSingleRoomQuery,
 } from "../../redux/features/user/userAccess.api";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import MSForm from "../../components/form/MSForm";
 import MSInput from "../../components/form/MSInput"; // Assuming MSInput is the custom input component
 import CustomContainer from "../../components/CustomContainer";
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import MSDatePicker from "../../components/form/MSDatePicker";
 import MSSelect from "../../components/form/MSSelect";
 import { TSlot } from "../../types";
-import { toast } from "sonner";
+import { addToBooking } from "../../redux/features/user/bookingSlice";
 
 const Booking: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const user = useAppSelector(useCurrentUser);
-  const [createBooking] = useCrateBookingMutation();
+  const navigate = useNavigate();
   const { roomId } = useParams();
-
+  const dispatch = useAppDispatch();
+  const { data: roomInfo } = useGetSingleRoomQuery(roomId as string);
   // Fetch available slots when a date is selected
   const { data: availableSlots, isFetching } = useGetAllAvailableSlotsQuery(
     [
@@ -39,7 +40,7 @@ const Booking: React.FC = () => {
   };
   const slotOptions = availableSlots?.data?.map((slot: TSlot) => ({
     label: `Room ${slot?.room?.roomNo} Time ${slot.startTime}-${slot.endTime}`,
-    value: slot._id,
+    value: `${slot._id}|${slot.startTime}-${slot.endTime}`,
   }));
   // Handle date change and fetch available slots
   const onDateChange = (date: moment.Moment | null) => {
@@ -51,21 +52,31 @@ const Booking: React.FC = () => {
   };
 
   const handleSubmit: SubmitHandler<FieldValues> = async (values) => {
-    const toastId = toast.loading("Loading...");
+    const selectedSlotIds = values.slots.map((slotValue: string) => {
+      const [slotId] = slotValue.split("|"); // Extract only slotId
+      return slotId;
+    });
+
+    const selectedTime = values.slots
+      .map((slotValue: string) => {
+        const [, slotTime] = slotValue.split("|"); // Extract only slotTime
+        return slotTime;
+      })
+      .join(", "); // Join multiple times if multiple slots selected
+    const pricePerSlot = roomInfo?.data?.pricePerSlot;
+    const totalCost = pricePerSlot * selectedSlotIds.length;
     const bookingData = {
+      roomName: roomInfo?.data?.name,
       date: selectedDate,
-      room: roomId,
+      roomId: roomId,
+      time: selectedTime,
       user: user?._id,
-      slots: values.slots,
+      pricePerSlot: pricePerSlot,
+      slots: selectedSlotIds,
+      totalCost: totalCost,
     };
-    try {
-      const res = await createBooking(bookingData);
-      console.log(res);
-      toast.success("Booking request done", { id: toastId });
-    } catch (error) {
-      console.log(error);
-      toast.error("Something went wrong", { id: toastId });
-    }
+    dispatch(addToBooking(bookingData));
+    navigate(`/booking/${roomId}/checkout`);
   };
 
   return (
@@ -121,7 +132,7 @@ const Booking: React.FC = () => {
             </Row>
 
             <Button type="primary" htmlType="submit">
-              Book Now
+              Proceed to Checkout
             </Button>
           </MSForm>
         </div>
