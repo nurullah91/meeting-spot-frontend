@@ -12,8 +12,7 @@ import { toast } from "sonner";
 import { useAppDispatch } from "../redux/hooks";
 import { verifyToken } from "../utils/verifyToken";
 import { setUser } from "../redux/features/auth/authSlice";
-import { TUser } from "../types";
-
+import { TUser } from "../types/user.types";
 const Login: React.FC = () => {
   const [login] = useLoginMutation();
   const navigate = useNavigate();

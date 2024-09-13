@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
 import { useGetAllRoomsQuery } from "../../redux/features/user/userAccess.api";
 import { Button, Col, Input, Pagination, Row, Spin } from "antd";
-import { TRoom } from "../../types";
 import RoomCard from "../../components/ui/RoomCard";
 import CustomContainer from "../../components/CustomContainer";
 import { TbFilterEdit } from "react-icons/tb";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import RoomFilterDrawer from "./RoomFilterDrawer";
+import { TRoom } from "../../types/user.types";
 
 const Rooms: React.FC = () => {
   const [openDrawer, setOpenDrawer] = useState(false);

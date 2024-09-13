@@ -1,9 +1,9 @@
 import React from "react";
 import SectionHeading from "../../components/SectionHeading";
 import { useGetAllRoomsQuery } from "../../redux/features/user/userAccess.api";
-import { TRoom } from "../../types";
 import RoomCard from "../../components/ui/RoomCard";
 import { Col, Row } from "antd";
+import { TRoom } from "../../types/user.types";
 
 const FeaturedRoom: React.FC = () => {
   const { data: roomsData } = useGetAllRoomsQuery([

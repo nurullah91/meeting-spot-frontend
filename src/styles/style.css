@@ -33,6 +33,7 @@
 }
 .openedNav {
   display: flex;
+  backdrop-filter: blur(5px);
 }
 .closedNav {
   display: none;
@@ -40,7 +41,7 @@
 .navItem {
   text-decoration: none;
   font-weight: 600;
-  color: #fdfdfd;
+  color: #030664;
   padding-bottom: 3px;
   position: relative;
 }
@@ -187,6 +188,15 @@
   border-color: #45a049;
 }
 
+/* Testimonial */
+.testimonialCard {
+  display: flex;
+  align-items: center;
+  flex-direction: column-reverse;
+}
+.testimonialImg {
+  width: 100%;
+}
 /* Tablet responsive breakpoints */
 @media only screen and (min-width: 768px) {
   .nav-link-container {
@@ -194,6 +204,7 @@
     position: static;
     width: 100%;
     background-color: transparent;
+    backdrop-filter: none;
   }
 
   .menuTriggerButton {
@@ -220,6 +231,9 @@
 
   .book-now-button {
     align-self: flex-start;
+  }
+  .testimonialCard {
+    flex-direction: row;
   }
 }
 

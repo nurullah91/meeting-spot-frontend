@@ -1,7 +1,7 @@
 import React from "react";
-import { TRoom } from "../../types";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
+import { TRoom } from "../../types/user.types";
 
 type TRoomCardProps = {
   room: TRoom;

@@ -14,8 +14,8 @@ import CustomContainer from "../../components/CustomContainer";
 import { useNavigate, useParams } from "react-router-dom";
 import MSDatePicker from "../../components/form/MSDatePicker";
 import MSSelect from "../../components/form/MSSelect";
-import { TSlot } from "../../types";
 import { addToBooking } from "../../redux/features/user/bookingSlice";
+import { TSlot } from "../../types/user.types";
 
 const Booking: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);

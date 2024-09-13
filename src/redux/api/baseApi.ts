@@ -8,9 +8,10 @@ import {
   fetchBaseQuery,
 } from "@reduxjs/toolkit/query/react";
 import { RootState } from "../store";
-import { TResponse, TUser } from "../../types";
+import { TResponse } from "../../types";
 import { toast } from "sonner";
 import { logout } from "../features/auth/authSlice";
+import { TUser } from "../../types/user.types";
 
 const baseQuery = fetchBaseQuery({
   baseUrl: `${import.meta.env.VITE_SERVER_URL}/api`,

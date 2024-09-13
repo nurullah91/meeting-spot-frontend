@@ -54,6 +54,15 @@ const userAccessApi = baseApi.injectEndpoints({
         };
       },
     }),
+
+    getMyBookings: builder.query({
+      query: () => {
+        return {
+          url: "/bookings/my-bookings",
+          method: "GET",
+        };
+      },
+    }),
   }),
 });
 
@@ -62,4 +71,5 @@ export const {
   useGetSingleRoomQuery,
   useGetAllAvailableSlotsQuery,
   useCreateBookingMutation,
+  useGetMyBookingsQuery,
 } = userAccessApi;

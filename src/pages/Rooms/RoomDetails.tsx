@@ -9,41 +9,43 @@ const RoomDetails: React.FC = () => {
   const navigate = useNavigate();
   const { data } = useGetSingleRoomQuery(roomId as string);
   return (
-    <CustomContainer>
-      <div className="room-details-container" style={{ margin: "100px 0px" }}>
-        <div className="image-gallery">
-          <img src={data?.data?.img} alt="Room Image" />
-        </div>
+    <div style={{ minHeight: "100vh" }}>
+      <CustomContainer>
+        <div className="room-details-container" style={{ margin: "100px 0px" }}>
+          <div className="image-gallery">
+            <img src={data?.data?.img} alt="Room Image" />
+          </div>
 
-        <div className="room-info">
-          <h1>{data?.data?.name}</h1>
-          <p>
-            <strong>Room No.:</strong> {data?.data?.roomNo}
-          </p>
-          <p>
-            <strong>Floor No.:</strong> {data?.data?.floorNo}
-          </p>
-          <p>
-            <strong>Capacity:</strong> {data?.data?.capacity}
-          </p>
-          <p>
-            <strong>Price Per Slot:</strong> ${data?.data?.pricePerSlot}
-          </p>
-          <p>
-            <strong>Amenities:</strong> {data?.data?.amenities.join(", ")}
-          </p>
-        </div>
+          <div className="room-info">
+            <h1>{data?.data?.name}</h1>
+            <p>
+              <strong>Room No.:</strong> {data?.data?.roomNo}
+            </p>
+            <p>
+              <strong>Floor No.:</strong> {data?.data?.floorNo}
+            </p>
+            <p>
+              <strong>Capacity:</strong> {data?.data?.capacity}
+            </p>
+            <p>
+              <strong>Price Per Slot:</strong> ${data?.data?.pricePerSlot}
+            </p>
+            <p>
+              <strong>Amenities:</strong> {data?.data?.amenities.join(", ")}
+            </p>
+          </div>
 
-        <Button
-          className="book-now-button"
-          type="primary"
-          size="large"
-          onClick={() => navigate(`/booking/${data?.data?._id}`)}
-        >
-          Book Now
-        </Button>
-      </div>
-    </CustomContainer>
+          <Button
+            className="book-now-button"
+            type="primary"
+            size="large"
+            onClick={() => navigate(`/booking/${data?.data?._id}`)}
+          >
+            Book Now
+          </Button>
+        </div>
+      </CustomContainer>
+    </div>
   );
 };
 
