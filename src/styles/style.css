@@ -131,61 +131,6 @@
   min-height: 100hv;
   margin-top: 60px;
   margin-left: 80px;
-  background-color: #00ffff;
-}
-
-/* Room Details Page styles */
-.room-details-container {
-  margin: 20px;
-  padding: 20px;
-  background-color: #f9f9f9;
-  border-radius: 8px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
-
-.image-gallery {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  margin-bottom: 20px;
-}
-
-.image-gallery img {
-  width: 100%;
-  max-width: 250px;
-  height: auto;
-  border-radius: 8px;
-  object-fit: cover;
-}
-
-.room-info {
-  margin-bottom: 20px;
-}
-
-.room-info h1 {
-  margin-bottom: 15px;
-  font-size: 24px;
-  color: #333;
-}
-
-.room-info p {
-  margin: 5px 0;
-  font-size: 16px;
-  color: #666;
-}
-
-.book-now-button {
-  display: block;
-  margin: 20px 0;
-  width: 100%;
-  max-width: 200px;
-  background-color: #4caf50;
-  border-color: #4caf50;
-}
-
-.book-now-button:hover {
-  background-color: #45a049;
-  border-color: #45a049;
 }
 
 /* Testimonial */
@@ -196,6 +141,31 @@
 }
 .testimonialImg {
   width: 100%;
+}
+.room-details-container {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: space-between;
+}
+.activePreviewImage {
+  border: 2px solid #f1c503;
+}
+
+.previewImage {
+  border: 2px solid transparent;
+}
+.room-info {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  flex-direction: column;
+}
+
+.booking-container {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
 }
 /* Tablet responsive breakpoints */
 @media only screen and (min-width: 768px) {
@@ -214,25 +184,10 @@
     display: flex;
   }
 
-  .room-details-container {
-    display: flex;
-    flex-direction: row;
-    align-items: flex-start;
-  }
-
-  .image-gallery {
-    flex-basis: 50%;
-    margin-right: 20px;
-  }
-
-  .room-info {
-    flex-basis: 50%;
-  }
-
-  .book-now-button {
-    align-self: flex-start;
-  }
   .testimonialCard {
+    flex-direction: row;
+  }
+  .booking-container {
     flex-direction: row;
   }
 }
@@ -242,16 +197,13 @@
   .dashboard-content {
     margin-left: 200px;
   }
-
+  .image-gallery {
+    width: 50%;
+  }
+  .room-info {
+    width: 50%;
+  }
   .room-details-container {
-    padding: 40px;
-  }
-
-  .room-info h1 {
-    font-size: 28px;
-  }
-
-  .room-info p {
-    font-size: 18px;
+    flex-direction: row;
   }
 }

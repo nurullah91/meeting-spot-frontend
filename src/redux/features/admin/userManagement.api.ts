@@ -1,9 +1,9 @@
 import { TQueryParam } from "../../../types";
 import { baseApi } from "../../api/baseApi";
 
-const roomManagementApi = baseApi.injectEndpoints({
+const userManagementApi = baseApi.injectEndpoints({
   endpoints: (builder) => ({
-    getAllBookings: builder.query({
+    getAllUser: builder.query({
       query: (args) => {
         const params = new URLSearchParams();
         if (args) {
@@ -13,33 +13,33 @@ const roomManagementApi = baseApi.injectEndpoints({
         }
 
         return {
-          url: "/bookings",
+          url: "/auth/users",
           method: "GET",
           params: params,
         };
       },
-      providesTags: ["bookings"],
+      providesTags: ["users"],
     }),
-    updateBookings: builder.mutation({
+    updateRole: builder.mutation({
       query: (args) => ({
-        url: `/bookings/${args.id}`,
-        method: "PUT",
+        url: `/auth/update-user/${args.id}`,
+        method: "PATCH",
         body: args.data,
       }),
-      invalidatesTags: ["bookings"],
+      invalidatesTags: ["users"],
     }),
-    deleteBookings: builder.mutation({
+    deleteUser: builder.mutation({
       query: (id) => ({
-        url: `/bookings/${id}`,
+        url: `/auth/users/${id}`,
         method: "DELETE",
       }),
-      invalidatesTags: ["bookings"],
+      invalidatesTags: ["users"],
     }),
   }),
 });
 
 export const {
-  useUpdateBookingsMutation,
-  useDeleteBookingsMutation,
-  useGetAllBookingsQuery,
-} = roomManagementApi;
+  useGetAllUserQuery,
+  useUpdateRoleMutation,
+  useDeleteUserMutation,
+} = userManagementApi;

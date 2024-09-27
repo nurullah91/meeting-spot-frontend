@@ -16,7 +16,7 @@ const SectionHeading: React.FC<THeadingProps> = ({ title, subTitle }) => {
         style={{
           width: "500px",
           height: "4px",
-          background: "orange",
+          background: "linear-gradient(90deg, #313ff3, #e91bf7)",
           margin: "5px auto",
           borderRadius: "10px",
         }}

@@ -6,14 +6,14 @@ import "./Checkout.css";
 import { booking } from "../../redux/features/user/bookingSlice";
 import { useCreateBookingMutation } from "../../redux/features/user/userAccess.api";
 import { toast } from "sonner";
-import { Link, useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
+import { primaryButton } from "../../config/themeConfig";
 const Checkout: React.FC = () => {
   const [paymentMethod, setPaymentMethod] = useState<string | null>(null);
   const [addBooking] = useCreateBookingMutation();
   const [isModalVisible, setIsModalVisible] = useState(false);
   const user = useAppSelector(useCurrentUser);
   const bookingData = useAppSelector(booking);
-  const navigate = useNavigate();
   const bookingDetails = {
     ...bookingData.booking,
   };
@@ -37,11 +37,13 @@ const Checkout: React.FC = () => {
 
     try {
       const res = await addBooking(bookingDataToSave);
-      if (res.error) {
-        toast.error("Something went wrong", { id: toastId });
-      } else {
+      window.location.href = res.data?.data?.payment_url;
+
+      if (res.data.message) {
         toast.success(res.data.message, { id: toastId });
         showModal();
+      } else {
+        toast.error("Something went wrong", { id: toastId });
       }
     } catch (error) {
       toast.error("Something went wrong", { id: toastId });
@@ -50,7 +52,6 @@ const Checkout: React.FC = () => {
 
   const handleOk = () => {
     setIsModalVisible(false);
-    navigate("/my-bookings");
   };
 
   const handleCancel = () => {
@@ -75,7 +76,16 @@ const Checkout: React.FC = () => {
               <strong>Price per slot:</strong> {bookingDetails.pricePerSlot}
             </p>
             <p>
-              <strong>Total Cost:</strong> {bookingDetails.totalCost}
+              <strong>Total Cost:</strong>{" "}
+              <span
+                style={{
+                  color: "orangered",
+                  fontSize: "18px",
+                  fontWeight: "bold",
+                }}
+              >
+                ${bookingDetails.totalCost}
+              </span>
             </p>
             <p>
               <strong>User Name:</strong> {user?.name}
@@ -96,15 +106,13 @@ const Checkout: React.FC = () => {
               placeholder="Select a payment method"
               onChange={(value) => setPaymentMethod(value)}
             >
-              <Select.Option value="cashOnDelivery">
-                Cash On Delivery
-              </Select.Option>
               <Select.Option value="amarPay">Amar Pay</Select.Option>
             </Select>
           </Form.Item>
 
           <Button
             type="primary"
+            style={paymentMethod ? primaryButton : {}}
             disabled={!paymentMethod}
             onClick={handleBooking}
           >
@@ -114,14 +122,14 @@ const Checkout: React.FC = () => {
           <Modal
             title="Booking Confirmation"
             visible={isModalVisible}
-            footer={() => <Button onClick={handleOk}>Go To My Bookings</Button>}
+            footer={() => <Button onClick={handleOk}>Pay Now</Button>}
             onCancel={handleCancel}
           >
             <p>Thank you for your booking!</p>
             <p>
               Your booking for {bookingDetails.roomName} on{" "}
               {bookingDetails.date} at {bookingDetails.time} has been Recorded.
-              We'll confirm it as soon as possible.
+              We'll confirm it after successful payment.
             </p>
           </Modal>
         </div>
@@ -141,7 +149,9 @@ const Checkout: React.FC = () => {
             style={{ marginTop: "10px", textAlign: "center" }}
             to={"/rooms"}
           >
-            <Button>Browse Rooms</Button>
+            <Button type="primary" style={primaryButton}>
+              Browse Rooms
+            </Button>
           </Link>
         </div>
       )}

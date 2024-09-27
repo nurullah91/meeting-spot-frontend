@@ -10,7 +10,7 @@ import {
 import { Link } from "react-router-dom";
 import "../../styles/footer.style.css";
 
-const Footer: React.FC = () => {
+const FooterSection: React.FC = () => {
   return (
     <footer className="footer">
       <div className="footer-container">
@@ -81,4 +81,4 @@ const Footer: React.FC = () => {
   );
 };
 
-export default Footer;
+export default FooterSection;

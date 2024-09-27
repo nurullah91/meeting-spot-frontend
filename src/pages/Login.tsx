@@ -13,6 +13,7 @@ import { useAppDispatch } from "../redux/hooks";
 import { verifyToken } from "../utils/verifyToken";
 import { setUser } from "../redux/features/auth/authSlice";
 import { TUser } from "../types/user.types";
+import { primaryButton } from "../config/themeConfig";
 const Login: React.FC = () => {
   const [login] = useLoginMutation();
   const navigate = useNavigate();
@@ -64,7 +65,9 @@ const Login: React.FC = () => {
                   <MSInput type="text" label="Password" name="password" />
                 </Col>
               </Row>
-              <Button htmlType="submit">Login</Button>
+              <Button htmlType="submit" type="primary" style={primaryButton}>
+                Login
+              </Button>
             </MSForm>
           </div>
           <Divider>

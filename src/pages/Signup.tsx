@@ -9,6 +9,7 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useSignUpMutation } from "../redux/features/auth/authApi";
 import { toast } from "sonner";
 import { signupSchema } from "../Schemas/userSchema";
+import { primaryButton } from "../config/themeConfig";
 
 const SignUp: React.FC = () => {
   const [signUp] = useSignUpMutation();
@@ -60,7 +61,9 @@ const SignUp: React.FC = () => {
                   <MSInput type="text" label="Address" name="address" />
                 </Col>
               </Row>
-              <Button htmlType="submit">Signup</Button>
+              <Button htmlType="submit" type="primary" style={primaryButton}>
+                Signup
+              </Button>
             </MSForm>
           </div>
           <Divider>

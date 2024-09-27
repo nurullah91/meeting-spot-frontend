@@ -8,6 +8,7 @@ const roomManagementApi = baseApi.injectEndpoints({
         method: "POST",
         body: data,
       }),
+      invalidatesTags: ["rooms"],
     }),
     updateRoom: builder.mutation({
       query: (args) => ({
@@ -15,12 +16,14 @@ const roomManagementApi = baseApi.injectEndpoints({
         method: "PUT",
         body: args.data,
       }),
+      invalidatesTags: ["rooms", "singleRoom"],
     }),
     deleteRoom: builder.mutation({
       query: (id) => ({
         url: `/rooms/${id}`,
         method: "DELETE",
       }),
+      invalidatesTags: ["rooms"],
     }),
   }),
 });

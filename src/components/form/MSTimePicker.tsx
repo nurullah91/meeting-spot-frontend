@@ -1,47 +1,35 @@
-import { Form, Input } from "antd";
+import { Form, TimePicker } from "antd";
 import { Controller } from "react-hook-form";
 
 type TInputProps = {
-  type: string;
   name: string;
   label?: string;
   defaultValue?: string;
-  placeholder?: string;
-  readOnly?: boolean;
-  disabled?: boolean;
+  value?: string;
 };
 
-const MSInput = ({
-  label,
-  name,
-  type,
-  defaultValue,
-  disabled,
-  readOnly,
-  placeholder,
-}: TInputProps) => {
+const MSTimePicker = ({ label, name }: TInputProps) => {
+  const format = "HH:mm";
+
   return (
-    <>
+    <div style={{ marginBottom: "15px" }}>
       <Controller
         name={name}
         render={({ field, fieldState: { error } }) => (
           <Form.Item label={label}>
-            <Input
+            <TimePicker
+              style={{ width: "100%" }}
+              format={format}
               {...field}
-              type={type}
               id={name}
               size="large"
-              defaultValue={defaultValue}
-              readOnly={readOnly}
-              disabled={disabled}
-              placeholder={placeholder}
             />
             {error && <small style={{ color: "red" }}>{error.message}</small>}
           </Form.Item>
         )}
       />
-    </>
+    </div>
   );
 };
 
-export default MSInput;
+export default MSTimePicker;

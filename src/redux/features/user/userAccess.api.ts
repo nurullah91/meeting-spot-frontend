@@ -43,6 +43,7 @@ const userAccessApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["singleRoom"],
     }),
 
     createBooking: builder.mutation({
@@ -53,6 +54,7 @@ const userAccessApi = baseApi.injectEndpoints({
           body: data,
         };
       },
+      invalidatesTags: ["bookings"],
     }),
 
     getMyBookings: builder.query({
@@ -62,6 +64,7 @@ const userAccessApi = baseApi.injectEndpoints({
           method: "GET",
         };
       },
+      providesTags: ["bookings"],
     }),
   }),
 });

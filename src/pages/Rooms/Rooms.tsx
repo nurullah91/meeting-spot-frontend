@@ -33,7 +33,7 @@ const Rooms: React.FC = () => {
   // Filter out query params undefined value
   const queryParams = [
     { name: "page", value: currentPage },
-    { name: "limit", value: 10 },
+    { name: "limit", value: 9 },
     { name: "searchTerm", value: debouncedSearch },
     { name: "capacity", value: minCapacity },
     { name: "minPrice", value: minPrice },
@@ -89,9 +89,23 @@ const Rooms: React.FC = () => {
     // close modal
     onClose();
   };
-
+  if (isLoading || isFetching) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Spin size="large"></Spin>
+      </div>
+    );
+  }
   return (
-    <div style={{ margin: "70px 0px" }}>
+    <div style={{ margin: "70px 0px", minHeight: "100vh" }}>
       {/* Drawer */}
       <RoomFilterDrawer
         onClose={onClose}

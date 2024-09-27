@@ -13,6 +13,7 @@ import "./hero.css";
 import { Autoplay } from "swiper/modules";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
+import { primaryButton } from "../../config/themeConfig";
 const Hero: React.FC = () => {
   return (
     <div style={{ position: "relative", width: "100%" }}>
@@ -86,7 +87,9 @@ const Hero: React.FC = () => {
             Efficient, hassle-free room booking for all your meeting needs
           </h3>
           <Link style={{ marginTop: "10px" }} to={"/rooms"}>
-            <Button>Book Now</Button>
+            <Button type="primary" style={primaryButton}>
+              Book Now
+            </Button>
           </Link>
         </div>
       </div>

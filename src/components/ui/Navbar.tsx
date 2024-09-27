@@ -7,6 +7,7 @@ import { Button, Dropdown, MenuProps } from "antd";
 import { FaUserCircle } from "react-icons/fa";
 import { toast } from "sonner";
 import { HiMenuAlt1 } from "react-icons/hi";
+import { primaryButton } from "../../config/themeConfig";
 
 type TMenuItem = {
   label: string;
@@ -49,7 +50,7 @@ const Navbar: React.FC = () => {
     {
       key: "logout",
       label: (
-        <Button onClick={handleLogout} block>
+        <Button onClick={handleLogout} block type="primary" danger={true}>
           Logout
         </Button>
       ),
@@ -63,7 +64,7 @@ const Navbar: React.FC = () => {
     {
       key: "logout",
       label: (
-        <Button onClick={handleLogout} block>
+        <Button onClick={handleLogout} block type="primary" danger={true}>
           Logout
         </Button>
       ),
@@ -116,7 +117,9 @@ const Navbar: React.FC = () => {
           ) : (
             <div>
               <Link to={"/login"}>
-                <Button>Login</Button>
+                <Button type="primary" style={primaryButton}>
+                  Login
+                </Button>
               </Link>
             </div>
           )}

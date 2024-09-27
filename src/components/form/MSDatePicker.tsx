@@ -25,9 +25,6 @@ const MSDatePicker = ({
             <DatePicker
               {...field}
               onChange={onValueChange}
-              disabledDate={(current) =>
-                current && current < moment().endOf("day")
-              }
               id={name}
               size="large"
               disabled={disabled}

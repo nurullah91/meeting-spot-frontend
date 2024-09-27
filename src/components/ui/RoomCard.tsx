@@ -2,6 +2,7 @@ import React from "react";
 import { Button } from "antd";
 import { Link } from "react-router-dom";
 import { TRoom } from "../../types/user.types";
+import { primaryButton } from "../../config/themeConfig";
 
 type TRoomCardProps = {
   room: TRoom;
@@ -27,7 +28,9 @@ const RoomCard: React.FC<TRoomCardProps> = ({ room }) => {
         </h3>
 
         <Link to={`/rooms/${room._id}`}>
-          <Button>See Details</Button>
+          <Button type="primary" style={primaryButton}>
+            See Details
+          </Button>
         </Link>
       </div>
     </div>

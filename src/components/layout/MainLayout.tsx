@@ -1,14 +1,14 @@
 import React from "react";
 import Navbar from "../ui/Navbar";
 import { Outlet } from "react-router-dom";
-import Footer from "../ui/Footer";
+import FooterSection from "../ui/FooterSection";
 
 const MainLayout: React.FC = () => {
   return (
     <div style={{ position: "relative" }}>
       <Navbar />
       <Outlet />
-      <Footer />
+      <FooterSection />
     </div>
   );
 };

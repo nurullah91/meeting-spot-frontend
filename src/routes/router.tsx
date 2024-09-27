@@ -19,6 +19,8 @@ import MyBookings from "../pages/User/MyBookings";
 import ProtectedLayout from "../components/layout/ProtectedLayout";
 import Booking from "../pages/User/Booking";
 import Checkout from "../pages/User/Checkout";
+import CreateRoom from "../pages/Admin/CreateRoom";
+import UpdateRoom from "../pages/Admin/UpdateRoom";
 
 const router = createBrowserRouter([
   {
@@ -108,8 +110,29 @@ const router = createBrowserRouter([
         ),
       },
       {
+        path: "room-management/create-room",
+        element: (
+          <ProtectedLayout role="admin">
+            <CreateRoom />,
+          </ProtectedLayout>
+        ),
+      },
+      {
+        path: "room-management/update-room/:roomId",
+        element: (
+          <ProtectedLayout role="admin">
+            <UpdateRoom />,
+          </ProtectedLayout>
+        ),
+      },
+      {
         path: "slots-management",
-        element: <SlotsManagement />,
+        element: (
+          <ProtectedLayout role="admin">
+            {" "}
+            <SlotsManagement />{" "}
+          </ProtectedLayout>
+        ),
       },
       {
         path: "booking-management",

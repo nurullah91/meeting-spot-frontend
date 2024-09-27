@@ -7,9 +7,10 @@ import { RiHomeGearFill } from "react-icons/ri";
 import { BsPersonWorkspace } from "react-icons/bs";
 import { FaUserShield } from "react-icons/fa";
 import { FaUsersGear } from "react-icons/fa6";
+import FooterSection from "../ui/FooterSection";
 type MenuItem = Required<MenuProps>["items"][number];
 
-const { Content, Footer, Sider } = Layout;
+const { Content, Sider } = Layout;
 
 const DashboardLayout: React.FC = () => {
   const items: MenuItem[] = [
@@ -68,9 +69,7 @@ const DashboardLayout: React.FC = () => {
           </Content>
         </Layout>
       </Content>
-      <Footer style={{ textAlign: "center" }}>
-        Ant Design ©{new Date().getFullYear()} Created by Ant UED
-      </Footer>
+      <FooterSection />
     </Layout>
   );
 };
