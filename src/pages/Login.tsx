@@ -4,7 +4,6 @@ import MSForm from "../components/form/MSForm";
 import MSInput from "../components/form/MSInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { Button, Col, Divider, Row } from "antd";
-import CustomContainer from "../components/CustomContainer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { loginSchema } from "../Schemas/userSchema";
 import { useLoginMutation } from "../redux/features/auth/authApi";
@@ -43,39 +42,38 @@ const Login: React.FC = () => {
     }
   };
   return (
-    <CustomContainer>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-        }}
-      >
-        <div>
-          <h1 style={{ textAlign: "center" }}>Login</h1>
+    <div
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+      }}
+      className="login-container"
+    >
+      <div className="login-content">
+        <h1 style={{ textAlign: "center" }}>Login</h1>
 
-          <div>
-            <MSForm onSubmit={onSubmit} resolver={zodResolver(loginSchema)}>
-              <Row>
-                <Col span={24}>
-                  <MSInput type="email" label="Email" name="email" />
-                </Col>
-                <Col span={24}>
-                  <MSInput type="text" label="Password" name="password" />
-                </Col>
-              </Row>
-              <Button htmlType="submit" type="primary" style={primaryButton}>
-                Login
-              </Button>
-            </MSForm>
-          </div>
-          <Divider>
-            New user? please <Link to={"/signup"}>Signup</Link>
-          </Divider>
+        <div>
+          <MSForm onSubmit={onSubmit} resolver={zodResolver(loginSchema)}>
+            <Row>
+              <Col span={24}>
+                <MSInput type="email" label="Email" name="email" />
+              </Col>
+              <Col span={24}>
+                <MSInput type="text" label="Password" name="password" />
+              </Col>
+            </Row>
+            <Button htmlType="submit" type="primary" style={primaryButton}>
+              Login
+            </Button>
+          </MSForm>
         </div>
+        <Divider>
+          New user? please <Link to={"/signup"}>Signup</Link>
+        </Divider>
       </div>
-    </CustomContainer>
+    </div>
   );
 };
 

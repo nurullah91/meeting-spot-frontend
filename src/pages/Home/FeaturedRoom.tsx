@@ -2,8 +2,10 @@ import React from "react";
 import SectionHeading from "../../components/SectionHeading";
 import { useGetAllRoomsQuery } from "../../redux/features/user/userAccess.api";
 import RoomCard from "../../components/ui/RoomCard";
-import { Col, Row } from "antd";
+import { Button, Col, Row } from "antd";
 import { TRoom } from "../../types/user.types";
+import { Link } from "react-router-dom";
+import { primaryButton } from "../../config/themeConfig";
 
 const FeaturedRoom: React.FC = () => {
   const { data: roomsData } = useGetAllRoomsQuery([
@@ -30,6 +32,13 @@ const FeaturedRoom: React.FC = () => {
           </Col>
         ))}
       </Row>
+      <div style={{ marginTop: "30px", textAlign: "center" }}>
+        <Link to="/rooms">
+          <Button type="primary" size="large" style={primaryButton}>
+            See More
+          </Button>
+        </Link>
+      </div>
     </div>
   );
 };

@@ -40,7 +40,7 @@ const Service: React.FC = () => {
         />
       </motion.div>
 
-      <Row gutter={[30, 30]} align="stretch" justify="space-between">
+      <Row gutter={[30, 70]} align="stretch" justify="space-between">
         {services.map((service, index) => (
           <Col xs={24} sm={12} md={6} key={index}>
             <motion.div

@@ -4,7 +4,6 @@ import MSForm from "../components/form/MSForm";
 import MSInput from "../components/form/MSInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import { Button, Col, Divider, Row } from "antd";
-import CustomContainer from "../components/CustomContainer";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { useSignUpMutation } from "../redux/features/auth/authApi";
 import { toast } from "sonner";
@@ -30,48 +29,47 @@ const SignUp: React.FC = () => {
     }
   };
   return (
-    <CustomContainer>
-      <div
-        style={{
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "center",
-          minHeight: "100vh",
-        }}
-      >
-        <div>
-          <h1 style={{ textAlign: "center" }}>Signup as New User</h1>
+    <div
+      className="login-container"
+      style={{
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        minHeight: "100vh",
+      }}
+    >
+      <div className="login-content">
+        <h1 style={{ textAlign: "center" }}>Signup as New User</h1>
 
-          <div>
-            <MSForm onSubmit={onSubmit} resolver={zodResolver(signupSchema)}>
-              <Row gutter={20}>
-                <Col span={24} lg={{ span: 12 }}>
-                  <MSInput type="text" label="Name" name="name" />
-                </Col>
-                <Col span={24} lg={{ span: 12 }}>
-                  <MSInput type="email" label="Email" name="email" />
-                </Col>
-                <Col span={24} lg={{ span: 12 }}>
-                  <MSInput type="text" label="Phone" name="phone" />
-                </Col>
-                <Col span={24} lg={{ span: 12 }}>
-                  <MSInput type="text" label="Password" name="password" />
-                </Col>
-                <Col span={24}>
-                  <MSInput type="text" label="Address" name="address" />
-                </Col>
-              </Row>
-              <Button htmlType="submit" type="primary" style={primaryButton}>
-                Signup
-              </Button>
-            </MSForm>
-          </div>
-          <Divider>
-            Already Have an account? please <Link to={"/login"}>Login</Link>
-          </Divider>
+        <div>
+          <MSForm onSubmit={onSubmit} resolver={zodResolver(signupSchema)}>
+            <Row gutter={20}>
+              <Col span={24} lg={{ span: 12 }}>
+                <MSInput type="text" label="Name" name="name" />
+              </Col>
+              <Col span={24} lg={{ span: 12 }}>
+                <MSInput type="email" label="Email" name="email" />
+              </Col>
+              <Col span={24} lg={{ span: 12 }}>
+                <MSInput type="text" label="Phone" name="phone" />
+              </Col>
+              <Col span={24} lg={{ span: 12 }}>
+                <MSInput type="text" label="Password" name="password" />
+              </Col>
+              <Col span={24}>
+                <MSInput type="text" label="Address" name="address" />
+              </Col>
+            </Row>
+            <Button htmlType="submit" type="primary" style={primaryButton}>
+              Signup
+            </Button>
+          </MSForm>
         </div>
+        <Divider>
+          Already Have an account? please <Link to={"/login"}>Login</Link>
+        </Divider>
       </div>
-    </CustomContainer>
+    </div>
   );
 };
 

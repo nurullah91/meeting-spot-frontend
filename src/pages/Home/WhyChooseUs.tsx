@@ -39,7 +39,7 @@ const WhyChooseUs: React.FC = () => {
         />
       </motion.div>
 
-      <Row gutter={[16, 16]} align="stretch">
+      <Row gutter={[30, 70]} align="stretch">
         {features.map((feature, index) => (
           <Col xs={24} sm={12} md={6} key={index}>
             <motion.div
@@ -47,7 +47,7 @@ const WhyChooseUs: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
+              transition={{ duration: 0.3 }}
               style={{ height: "100%" }} // Ensures the div stretches to fill height
             >
               <div

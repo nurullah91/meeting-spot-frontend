@@ -36,7 +36,7 @@ const HowItWorks: React.FC = () => {
         />
       </motion.div>
 
-      <Row gutter={[16, 16]} align="middle" justify="center">
+      <Row gutter={[30, 30]} align="middle" justify="center">
         {steps.map((step, index) => (
           <Col xs={24} sm={12} md={8} key={index}>
             <motion.div
@@ -44,7 +44,7 @@ const HowItWorks: React.FC = () => {
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: index * 0.2, duration: 0.5 }}
+              transition={{ duration: 0.3 }}
             >
               <div
                 style={{

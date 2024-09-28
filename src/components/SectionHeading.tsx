@@ -14,7 +14,8 @@ const SectionHeading: React.FC<THeadingProps> = ({ title, subTitle }) => {
       {subTitle && <h3 style={{ fontSize: "24px" }}>{subTitle}</h3>}
       <div
         style={{
-          width: "500px",
+          maxWidth: "500px",
+          width: "80%",
           height: "4px",
           background: "linear-gradient(90deg, #313ff3, #e91bf7)",
           margin: "5px auto",

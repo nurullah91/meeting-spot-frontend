@@ -6,6 +6,7 @@ import SectionHeading from "../components/SectionHeading";
 import MSForm from "../components/form/MSForm";
 import MSInput from "../components/form/MSInput";
 import { FieldValues, SubmitHandler } from "react-hook-form";
+import { primaryButton } from "../config/themeConfig";
 
 const ContactUs: React.FC = () => {
   const handleSubmit: SubmitHandler<FieldValues> = (data) => {
@@ -38,19 +39,60 @@ const ContactUs: React.FC = () => {
               </div>
             </Col>
             <Col span={24} md={12}>
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                transition={{ duration: 0.5 }}
-              >
+              <motion.div style={{ overflow: "hidden" }}>
                 <MSForm onSubmit={handleSubmit}>
-                  <MSInput label="Name" name="name" type="text" />
-                  <MSInput label="Email" name="email" type="email" />
-                  <MSInput label="Subject" name="subject" type="text" />
-                  <MSInput label="Message" name="message" type="text" />
-                  <Button type="primary" htmlType="submit" size="large">
-                    Send Message
-                  </Button>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <MSInput label="Name" name="name" type="text" />
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <MSInput label="Email" name="email" type="email" />
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <MSInput label="Subject" name="subject" type="text" />
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: -20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <MSInput label="Message" name="message" type="text" />
+                  </motion.div>
+                  <motion.div
+                    whileHover={{ scale: 1.05 }}
+                    whileTap={{ scale: 0.95 }}
+                    initial={{ opacity: 0, y: 20 }}
+                    animate={{ opacity: 1, y: 0 }}
+                    transition={{ duration: 0.3 }}
+                  >
+                    <Button
+                      type="primary"
+                      htmlType="submit"
+                      size="large"
+                      style={primaryButton}
+                    >
+                      Send Message
+                    </Button>
+                  </motion.div>
                 </MSForm>
               </motion.div>
             </Col>

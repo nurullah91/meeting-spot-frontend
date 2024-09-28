@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Modal, Button, Card, Select, Form } from "antd";
+import { Modal, Button, Card, Select, Form, Spin } from "antd";
 import { useAppSelector } from "../../redux/hooks";
 import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import "./Checkout.css";
@@ -120,16 +120,22 @@ const Checkout: React.FC = () => {
           </Button>
 
           <Modal
-            title="Booking Confirmation"
+            title="Redirecting to Payment Process"
             visible={isModalVisible}
-            footer={() => <Button onClick={handleOk}>Pay Now</Button>}
+            footer={() => (
+              <Button onClick={handleOk}>
+                {" "}
+                <Spin /> Redirecting
+              </Button>
+            )}
             onCancel={handleCancel}
           >
-            <p>Thank you for your booking!</p>
+            <p>Thank you for your booking</p>
             <p>
               Your booking for {bookingDetails.roomName} on{" "}
               {bookingDetails.date} at {bookingDetails.time} has been Recorded.
-              We'll confirm it after successful payment.
+              We'll confirm it after successful payment. Wait for redirecting
+              you to Payment Process
             </p>
           </Modal>
         </div>

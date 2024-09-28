@@ -1,4 +1,4 @@
-import { Button, message, Spin } from "antd";
+import { Button, Col, message, Row, Spin } from "antd";
 import { useNavigate } from "react-router-dom";
 import { useState } from "react";
 import { FieldValues, SubmitHandler } from "react-hook-form";
@@ -70,23 +70,35 @@ const CreateRoom = () => {
         onSubmit={onSubmit}
         resolver={zodResolver(roomSchema.createRoomSchema)}
       >
-        <MSInput label="Room Name" name="name" type="text" />
+        <Row gutter={[30, 30]}>
+          <Col sm={24} lg={12}>
+            <MSInput label="Room Name" name="name" type="text" />
+          </Col>
 
-        <MSInput label="Room No." name="roomNo" type="number" />
+          <Col sm={24} lg={12}>
+            <MSInput label="Room No." name="roomNo" type="number" />
+          </Col>
 
-        <MSInput label="Floor No." name="floorNo" type="number" />
+          <Col sm={24} lg={12}>
+            <MSInput label="Floor No." name="floorNo" type="number" />
+          </Col>
 
-        <MSInput label="Capacity" name="capacity" type="number" />
+          <Col sm={24} lg={12}>
+            <MSInput label="Capacity" name="capacity" type="number" />
+          </Col>
 
-        <MSInput label="Price Per Slot" name="pricePerSlot" type="number" />
-
-        <MSInput
-          label="Amenities"
-          name="amenities"
-          type="text"
-          placeholder=" Separate every amenity with comma ( , )"
-        />
-
+          <Col sm={24} lg={12}>
+            <MSInput label="Price Per Slot" name="pricePerSlot" type="number" />
+          </Col>
+          <Col sm={24} lg={12}>
+            <MSInput
+              label="Amenities"
+              name="amenities"
+              type="text"
+              placeholder=" Separate every amenity with comma ( , )"
+            />
+          </Col>
+        </Row>
         {/* Single image upload */}
         <MSFileInput label="Main Image" name="img" accept="image/*" />
 
@@ -97,7 +109,6 @@ const CreateRoom = () => {
           accept="image/*"
           multiple
         />
-
         <div style={{ marginTop: "16px" }}>
           <Button
             type="primary"
