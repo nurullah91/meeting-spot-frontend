@@ -43,6 +43,6 @@ npm run dev
 ```
 
 > - An overview video of this project [here](https://drive.google.com/file/d/1X1OYIqwbcAmUvkd7rhigBhqio3l_GdSx/view?usp=drive_link)
-> - Server code [Link](https://github.com/nurullah91/meeting-sport-backend)
+> - Server code [Link](https://github.com/nurullah91/meeting-spot-backend)
 > - Server Live deployment [Link](https://meeting-spot-backend.vercel.app/)
 > - Frontend Live deployment [Link]([https://meeting-spot-backend.vercel.app/](https://meeting-spot.netlify.app/))
