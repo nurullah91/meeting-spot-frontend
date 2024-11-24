@@ -1,6 +1,8 @@
 # Meeting Spot
 
 This project is a Meeting room management website frontend. An overview video of this projects is [link](https://drive.google.com/file/d/1X1OYIqwbcAmUvkd7rhigBhqio3l_GdSx/view?usp=drive_link)
+This is a hotel room booking management website where user can book meeting room for specific date and time with amar pay payment methood build with react.js and redux typescript and many more
+
 
 This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
 
@@ -43,4 +45,4 @@ npm run dev
 > - An overview video of this project [here](https://drive.google.com/file/d/1X1OYIqwbcAmUvkd7rhigBhqio3l_GdSx/view?usp=drive_link)
 > - Server code [Link](https://github.com/nurullah91/meeting-sport-backend)
 > - Server Live deployment [Link](https://meeting-spot-backend.vercel.app/)
-> - Frontend Live deployment [Link](https://meeting-spot-backend.vercel.app/)
+> - Frontend Live deployment [Link]([https://meeting-spot-backend.vercel.app/](https://meeting-spot.netlify.app/))
