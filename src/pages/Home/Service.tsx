@@ -1,8 +1,11 @@
 import React from "react";
 import SectionHeading from "../../components/SectionHeading";
-import { Col, Row } from "antd";
 import { motion } from "framer-motion";
 import "../../styles/style.css";
+import realtimeLogo from "../../assets/icons/realtime-logo.png";
+import confirmationLogo from "../../assets/icons/confirmation-logo.png";
+import scheduleLogo from "../../assets/icons/schedule-logo.png";
+import supportLogo from "../../assets/icons/support-logo.png";
 
 const Service: React.FC = () => {
   const services = [
@@ -10,25 +13,29 @@ const Service: React.FC = () => {
       title: "Real-Time Availability",
       description:
         "Check room availability in real-time and make instant decisions.",
+      icon: realtimeLogo,
     },
     {
       title: "Instant Booking Confirmation",
       description:
         "Receive immediate confirmation once your booking is successful.",
+      icon: confirmationLogo,
     },
     {
       title: "Flexible Scheduling",
       description:
         "Book rooms on your own time with flexible and convenient scheduling.",
+      icon: scheduleLogo,
     },
     {
       title: "24/7 Support",
       description:
         "We are here to assist you with any queries or concerns, anytime.",
+      icon: supportLogo,
     },
   ];
   return (
-    <div style={{ margin: "100px 0px" }}>
+    <div>
       <motion.div
         initial={{ opacity: 0, y: 50 }}
         animate={{ opacity: 1, y: 0 }}
@@ -40,36 +47,49 @@ const Service: React.FC = () => {
         />
       </motion.div>
 
-      <Row gutter={[30, 70]} align="stretch" justify="space-between">
+      <div className="serviceCardContainer">
         {services.map((service, index) => (
-          <Col xs={24} sm={12} md={6} key={index}>
-            <motion.div
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.3 }}
-              style={{ height: "100%" }}
+          <motion.div
+            key={index}
+            style={{ position: "relative", height: "100%", width: "100%" }}
+          >
+            <div
+              style={{
+                zIndex: 10,
+                padding: "20px",
+              }}
             >
-              <div
+              <img
+                src={service.icon}
+                alt={service.title}
+                className="serviceCardImage"
+              />
+              <h3
                 style={{
-                  padding: "20px",
-                  borderRadius: "8px",
-                  backgroundColor: "#f5f5f5",
-                  textAlign: "center",
-                  height: "100%",
+                  color: "#003366",
+                  fontSize: "20px",
+                  marginTop: "10px",
                 }}
-                className="roomCard"
               >
-                <h3 style={{ color: "#003366", fontSize: "20px" }}>
-                  {service.title}
-                </h3>
-                <p style={{ fontSize: "16px" }}>{service.description}</p>
-              </div>
-            </motion.div>
-          </Col>
+                {service.title}
+              </h3>
+              <p style={{ fontSize: "16px" }}>{service.description}</p>
+            </div>
+            <div
+              style={{
+                borderRadius: "8px",
+                backgroundColor: "#ffff",
+                height: "50%",
+                width: "100%",
+                position: "absolute",
+                bottom: "0px",
+                left: "0px",
+                zIndex: -1,
+              }}
+            ></div>
+          </motion.div>
         ))}
-      </Row>
+      </div>
     </div>
   );
 };

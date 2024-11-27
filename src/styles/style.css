@@ -6,13 +6,14 @@
   z-index: 20;
   width: 100%;
   backdrop-filter: blur(5px);
-  background-color: #75dce072;
+  background-color: #ffffffd8;
 }
 .menuTriggerButton {
   display: block;
 }
 .navContent {
   width: 95%;
+  max-width: 1220px;
   margin: 0 auto;
   display: flex;
   justify-content: space-between;
@@ -24,7 +25,7 @@
   position: absolute;
   top: 59px;
   left: 62px;
-  background-color: #75dce072;
+  background-color: #fffffff5;
   width: 200px;
   align-items: start;
   padding: 20px 15px;
@@ -41,18 +42,18 @@
 .navItem {
   text-decoration: none;
   font-weight: 600;
-  color: #030664;
+  color: #003366;
   padding-bottom: 3px;
   position: relative;
 }
 .active-route {
-  border-bottom: 3px solid #f1c503;
+  border-bottom: 3px solid #4682b4;
 }
 .navItem::after {
   content: "";
   width: 0;
   height: 3px;
-  background-color: #f1c503;
+  background-color: #4682b4;
   position: absolute;
   bottom: -3px;
   left: 0;
@@ -63,9 +64,20 @@
 }
 
 /* service card styles */
-.serviceCard {
-  border: 2px solid #457b9d;
-  padding: 40px 30px;
+
+.serviceCardImage {
+  height: 150px;
+  width: 150px;
+  border-radius: 50%;
+  margin: 0 auto;
+  border: 5px solid #f2f2f2;
+  background-color: #f2f2f2;
+}
+.serviceCardImage:hover {
+  scale: 1.1;
+  transform: rotate(-8deg);
+  transition: all;
+  transition-duration: 0.4s;
 }
 
 /* Room card styles */
@@ -179,6 +191,12 @@
   background-color: rgba(93, 7, 221, 0.082);
   backdrop-filter: blur(5px);
 }
+.serviceCardContainer {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 20px;
+}
+
 /* Tablet responsive breakpoints */
 @media only screen and (min-width: 768px) {
   .nav-link-container {
@@ -202,6 +220,10 @@
   .booking-container {
     flex-direction: row;
   }
+
+  .serviceCardContainer {
+    grid-template-columns: 1fr 1fr;
+  }
 }
 
 /* Large screen breakpoint */
@@ -217,5 +239,10 @@
   }
   .room-details-container {
     flex-direction: row;
+  }
+
+  .serviceCardContainer {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
   }
 }

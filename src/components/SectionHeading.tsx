@@ -8,16 +8,19 @@ type THeadingProps = {
 const SectionHeading: React.FC<THeadingProps> = ({ title, subTitle }) => {
   return (
     <div
-      style={{ textAlign: "center", marginTop: "30px", marginBottom: "30px" }}
+      style={{ textAlign: "center", marginTop: "50px", marginBottom: "30px" }}
     >
       {title && <h2 style={{ fontSize: "32px", color: "#003366" }}>{title}</h2>}
-      {subTitle && <h3 style={{ fontSize: "24px" }}>{subTitle}</h3>}
+      {subTitle && (
+        <h3 style={{ fontSize: "24px", color: "#003366" }}>{subTitle}</h3>
+      )}
+      {/* gradient line after title */}
       <div
         style={{
           maxWidth: "500px",
           width: "80%",
           height: "4px",
-          background: "linear-gradient(90deg, #313ff3, #e91bf7)",
+          background: "#4682B4",
           margin: "5px auto",
           borderRadius: "10px",
         }}

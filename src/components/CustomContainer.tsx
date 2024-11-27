@@ -11,7 +11,7 @@ const CustomContainer: React.FC<CustomContainerProps> = ({ children }) => {
   return (
     <Content
       style={{
-        maxWidth: "1150px",
+        maxWidth: "1200px",
         width: "95%",
         margin: "0 auto",
       }}

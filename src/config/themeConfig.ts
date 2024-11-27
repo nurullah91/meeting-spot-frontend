@@ -9,7 +9,7 @@ export const customTheme = {
 };
 
 export const primaryButton = {
-  background: "linear-gradient(90deg, #313ff3, #e91bf7)",
+  background: "#007bff",
   border: "none",
   color: "#fff",
   boxShadow: "0px 5px 15px rgba(0, 0, 0, 0.2)",

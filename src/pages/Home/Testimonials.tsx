@@ -92,7 +92,7 @@ const Testimonials: React.FC = () => {
                       width: "400px",
                       height: "400px",
                       margin: "0px auto",
-                      borderRight: "5px solid orange",
+                      borderRight: "5px solid #4682b4",
                       borderRadius: "5px",
                       paddingRight: "3px",
                     }}

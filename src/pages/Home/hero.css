@@ -17,6 +17,6 @@
 .swiper-slide img {
   display: block;
   width: 100vw;
-  height: 100vh;
+  height: 85vh;
   object-fit: cover;
 }
