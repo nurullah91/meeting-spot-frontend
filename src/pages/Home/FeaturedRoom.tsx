@@ -5,7 +5,9 @@ import RoomCard from "../../components/ui/RoomCard";
 import { Button, Col, Row } from "antd";
 import { TRoom } from "../../types/user.types";
 import { Link } from "react-router-dom";
+import { motion } from "framer-motion";
 import { primaryButton } from "../../config/themeConfig";
+import { fadeIn } from "../../lib/motionVariant";
 
 const FeaturedRoom: React.FC = () => {
   const { data: roomsData } = useGetAllRoomsQuery([
@@ -25,10 +27,17 @@ const FeaturedRoom: React.FC = () => {
         subTitle="Explore our featured rooms and book your available slots anytime"
       />
 
-      <Row gutter={[30, 30]}>
-        {roomsData?.data?.result?.map((room: TRoom) => (
-          <Col span={24} md={{ span: 12 }} lg={{ span: 12 }} key={room._id}>
-            <RoomCard room={room} />
+      <Row gutter={[15, 15]}>
+        {roomsData?.data?.result?.map((room: TRoom, index: number) => (
+          <Col span={24} md={{ span: 12 }} lg={{ span: 6 }} key={room._id}>
+            <motion.div
+              variants={fadeIn(index % 2 === 1 ? "left" : "right", 0)}
+              initial="hidden"
+              whileInView={"show"}
+              viewport={{ once: false, amount: 0.7 }}
+            >
+              <RoomCard room={room} />
+            </motion.div>
           </Col>
         ))}
       </Row>

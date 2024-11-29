@@ -6,6 +6,7 @@ import realtimeLogo from "../../assets/icons/realtime-logo.png";
 import confirmationLogo from "../../assets/icons/confirmation-logo.png";
 import scheduleLogo from "../../assets/icons/schedule-logo.png";
 import supportLogo from "../../assets/icons/support-logo.png";
+import { fadeIn } from "../../lib/motionVariant";
 
 const Service: React.FC = () => {
   const services = [
@@ -51,6 +52,10 @@ const Service: React.FC = () => {
         {services.map((service, index) => (
           <motion.div
             key={index}
+            variants={fadeIn(index % 2 === 1 ? "right" : "left", 0)}
+            initial="hidden"
+            whileInView={"show"}
+            viewport={{ once: false, amount: 0.7 }}
             style={{ position: "relative", height: "100%", width: "100%" }}
           >
             <div

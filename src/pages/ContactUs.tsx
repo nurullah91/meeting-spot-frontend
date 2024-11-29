@@ -31,15 +31,23 @@ const ContactUs: React.FC = () => {
         >
           <Row gutter={20}>
             <Col span={24} md={12}>
-              <div>
-                <h3>Contact Information</h3>
-                <p>Email: contact@example.com</p>
-                <p>Phone: +123 456 789</p>
-                <p>Office Address: 123 Street, City, Country</p>
+              <div
+                style={{
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                }}
+              >
+                <div>
+                  <h2>Contact Information</h2>
+                  <p>Email: contact@example.com</p>
+                  <p>Phone: +123 456 789</p>
+                  <p>Office Address: 123 Street, City, Country</p>
+                </div>
               </div>
             </Col>
             <Col span={24} md={12}>
-              <motion.div style={{ overflow: "hidden" }}>
+              <motion.div>
                 <MSForm onSubmit={handleSubmit}>
                   <motion.div
                     whileHover={{ scale: 1.05 }}

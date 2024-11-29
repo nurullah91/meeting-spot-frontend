@@ -30,7 +30,7 @@ const FooterSection: React.FC = () => {
         </div>
 
         {/* Social Media Links */}
-        <div className="footer-section social-media">
+        <div className="social-media">
           <h3>Follow Us</h3>
           <div className="social-icons">
             <a
@@ -62,10 +62,13 @@ const FooterSection: React.FC = () => {
           <h3>Additional Links</h3>
           <ul>
             <li>
-              <Link to="/privacy-policy">Privacy Policy</Link>
+              <Link to="/rooms">Browse rooms</Link>
             </li>
             <li>
-              <Link to="/terms-of-service">Terms of Service</Link>
+              <Link to="/about-us">About us</Link>
+            </li>
+            <li>
+              <Link to="/contact-us">Contact us</Link>
             </li>
           </ul>
         </div>

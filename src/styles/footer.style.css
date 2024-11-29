@@ -55,6 +55,7 @@
 /* Social Media */
 .social-icons {
   display: flex;
+  margin-top: 15px;
   gap: 15px;
 }
 
@@ -66,6 +67,10 @@
 
 .social-icon:hover {
   color: #1abc9c; /* Highlight color on hover */
+}
+
+.additional-links {
+  text-align: end;
 }
 
 /* Footer Bottom */

@@ -133,6 +133,7 @@ const Login: React.FC = () => {
                   border: "2px solid #003366",
                   padding: "8px 20px",
                   marginRight: "12px",
+                  marginTop: "12px",
                   borderRadius: "40px",
                   cursor: "pointer",
                 }}
@@ -144,7 +145,7 @@ const Login: React.FC = () => {
                 style={{
                   border: "2px solid #003366",
                   padding: "8px 20px",
-                  marginRight: "12px",
+                  marginTop: "12px",
                   borderRadius: "40px",
                   cursor: "pointer",
                 }}
@@ -186,7 +187,13 @@ const Login: React.FC = () => {
                     </div>
                   </Col>
                 </Row>
-                <Button htmlType="submit" type="primary" style={primaryButton}>
+                <Button
+                  htmlType="submit"
+                  type="primary"
+                  style={primaryButton}
+                  block
+                  className="blockButton"
+                >
                   Login
                 </Button>
               </MSForm>

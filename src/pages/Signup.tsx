@@ -103,7 +103,13 @@ const SignUp: React.FC = () => {
                     <MSInput type="text" label="Address" name="address" />
                   </Col>
                 </Row>
-                <Button htmlType="submit" type="primary" style={primaryButton}>
+                <Button
+                  htmlType="submit"
+                  type="primary"
+                  block
+                  style={primaryButton}
+                  className="blockButton"
+                >
                   Signup
                 </Button>
               </MSForm>

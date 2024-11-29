@@ -33,7 +33,7 @@ const Rooms: React.FC = () => {
   // Filter out query params undefined value
   const queryParams = [
     { name: "page", value: currentPage },
-    { name: "limit", value: 9 },
+    { name: "limit", value: 12 },
     { name: "searchTerm", value: debouncedSearch },
     { name: "capacity", value: minCapacity },
     { name: "minPrice", value: minPrice },
@@ -157,12 +157,12 @@ const Rooms: React.FC = () => {
             ))}
 
           <div style={{ margin: "30px 0px" }}>
-            <Row gutter={[30, 30]}>
+            <Row gutter={[15, 15]}>
               {allRoomsData?.data?.result?.map((room: TRoom) => (
                 <Col
                   span={24}
                   md={{ span: 12 }}
-                  lg={{ span: 8 }}
+                  lg={{ span: 6 }}
                   key={room._id}
                 >
                   <RoomCard room={room} />
@@ -176,7 +176,7 @@ const Rooms: React.FC = () => {
             onChange={(value) => setCurrentPage(value)}
             align="start"
             defaultCurrent={1}
-            pageSize={10}
+            pageSize={12}
             total={allRoomsData?.data?.meta?.total}
           />
         </div>
