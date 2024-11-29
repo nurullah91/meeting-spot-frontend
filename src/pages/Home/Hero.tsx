@@ -61,7 +61,7 @@ const Hero: React.FC = () => {
           left: 0,
           width: "100%",
           height: "100%",
-          background: "#ffffff4a",
+          background: "#ffffff70",
           zIndex: 10,
           color: "#003366",
           display: "flex",

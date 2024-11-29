@@ -66,8 +66,9 @@
 /* service card styles */
 
 .serviceCardImage {
-  height: 150px;
-  width: 150px;
+  display: block;
+  height: 100px;
+  width: 100px;
   border-radius: 50%;
   margin: 0 auto;
   border: 5px solid #f2f2f2;
@@ -181,16 +182,23 @@
 }
 
 .login-container {
-  background: url(https://res.cloudinary.com/dbwftcxvx/image/upload/v1727472857/spefsu0arkjyyyg6yg58.jpg);
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
+  display: flex;
+  gap: 20px;
+  flex-direction: column;
 }
 .login-content {
   padding: 30px;
-  background-color: rgba(93, 7, 221, 0.082);
-  backdrop-filter: blur(5px);
+  width: 100%;
+  border-radius: 50px;
 }
+.loginPageCard {
+  width: 100%;
+  background-image: linear-gradient(130deg, #007bff, #007bff, #b1bcbe);
+  color: white;
+  padding: 50px 40px 0px 40px;
+  border-radius: 50px;
+}
+
 .serviceCardContainer {
   display: grid;
   grid-template-columns: 1fr;
@@ -199,6 +207,16 @@
 
 /* Tablet responsive breakpoints */
 @media only screen and (min-width: 768px) {
+  .login-container {
+    flex-direction: row;
+  }
+  .loginPageCard {
+    width: 40%;
+  }
+
+  .login-content {
+    width: 60%;
+  }
   .nav-link-container {
     flex-direction: row;
     position: static;

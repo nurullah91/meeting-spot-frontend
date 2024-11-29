@@ -79,7 +79,7 @@ const Service: React.FC = () => {
               style={{
                 borderRadius: "8px",
                 backgroundColor: "#ffff",
-                height: "50%",
+                height: "60%",
                 width: "100%",
                 position: "absolute",
                 bottom: "0px",
