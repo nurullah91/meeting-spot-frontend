@@ -1,0 +1,86 @@
+/* General Layout */
+.layout-row {
+  display: flex;
+  gap: 30px;
+  align-items: center;
+}
+
+/* Columns Default */
+.column {
+  flex: 1 1 100%;
+}
+
+/* First and Third Columns Inner Content */
+.inner-content {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.iconImg {
+  width: 100px;
+  margin: 0 auto;
+}
+
+/* Large Screens (Desktop) */
+@media (min-width: 992px) {
+  .layout-row {
+    flex-direction: row;
+  }
+
+  .column {
+    flex: 0 0 calc(33.333% - 30px); /* Each column takes one-third of the row */
+  }
+
+  .inner-content {
+    flex-direction: column; /* Inner items remain stacked */
+  }
+}
+
+/* Medium Screens (Tablet) */
+@media (min-width: 768px) and (max-width: 991px) {
+  .layout-row {
+    flex-direction: column; /* Stack columns vertically */
+  }
+
+  .first-column {
+    order: 2; /* First column moves to second */
+  }
+
+  .section-icon {
+    order: 1; /* Middle column moves to first */
+  }
+
+  .third-column {
+    order: 3;
+  }
+
+  .inner-content {
+    flex-direction: row; /* Inner items in a row */
+    gap: 20px;
+  }
+}
+
+/* Small Screens (Mobile) */
+@media (max-width: 767px) {
+  .layout-row {
+    flex-direction: column;
+  }
+
+  .first-column {
+    order: 2; /* First column moves to second */
+  }
+
+  .section-icon {
+    order: 1; /* Middle column moves to first */
+  }
+
+  .third-column {
+    order: 3;
+  }
+
+  .inner-content {
+    flex-direction: column;
+    gap: 10px;
+  }
+}

@@ -62,12 +62,7 @@ const router = createBrowserRouter([
       },
       {
         path: "rooms/:roomId",
-        element: (
-          <ProtectedLayout role="user">
-            {" "}
-            <RoomDetails />
-          </ProtectedLayout>
-        ),
+        element: <RoomDetails />,
       },
       {
         path: "about-us",
