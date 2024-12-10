@@ -219,6 +219,7 @@
   display: grid;
   grid-template-columns: 1fr;
   gap: 20px;
+  overflow: hidden;
 }
 
 /* Tablet responsive breakpoints */

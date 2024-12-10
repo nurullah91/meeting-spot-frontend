@@ -1,6 +1,7 @@
 /* General Layout */
 .layout-row {
   display: flex;
+  overflow: hidden;
   gap: 30px;
   align-items: center;
 }
@@ -18,7 +19,8 @@
 }
 
 .iconImg {
-  width: 100px;
+  max-width: 100px;
+
   margin: 0 auto;
 }
 

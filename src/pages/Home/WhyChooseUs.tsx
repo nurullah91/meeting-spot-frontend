@@ -33,7 +33,7 @@ const WhyChooseUs: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                style={{ height: "100%" }} // Ensures the div stretches to fill height
+                style={{ height: "100%" }}
               >
                 <div
                   style={{
@@ -42,9 +42,9 @@ const WhyChooseUs: React.FC = () => {
                     textAlign: "center",
 
                     display: "flex",
-                    flexDirection: "column", // Ensure vertical alignment
+                    flexDirection: "column",
                     justifyContent: "space-between",
-                    height: "100%", // Make sure all cards have equal height
+                    height: "100%",
                   }}
                 >
                   <img
@@ -69,7 +69,7 @@ const WhyChooseUs: React.FC = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.3 }}
-                style={{ height: "100%" }} // Ensures the div stretches to fill height
+                style={{ height: "100%" }}
               >
                 <div
                   style={{
@@ -77,9 +77,9 @@ const WhyChooseUs: React.FC = () => {
                     borderRadius: "8px",
                     textAlign: "center",
                     display: "flex",
-                    flexDirection: "column", // Ensure vertical alignment
+                    flexDirection: "column",
                     justifyContent: "space-between",
-                    height: "100%", // Make sure all cards have equal height
+                    height: "100%",
                   }}
                 >
                   <img
@@ -101,13 +101,24 @@ const WhyChooseUs: React.FC = () => {
         </div>
 
         {/* Middle Column (Section Icon) */}
-        <div className="column section-icon">
+        <div
+          className="column section-icon"
+          style={{
+            overflow: "hidden",
+            textAlign: "center",
+            border: "5px solid #173366",
+            borderRadius: "100%",
+            padding: "10px",
+          }}
+        >
           <img
             src={whyChooseUsIcon}
             style={{
-              width: "100%",
-              border: "5px solid #173366",
-              borderRadius: "100%",
+              maxWidth: "400px",
+              width: "95%",
+              margin: "0px auto",
+              borderBottomRightRadius: "100%",
+              borderBottomLeftRadius: "100%",
             }}
             alt="Icon"
           />

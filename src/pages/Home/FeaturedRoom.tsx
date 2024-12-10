@@ -21,7 +21,7 @@ const FeaturedRoom: React.FC = () => {
     },
   ]);
   return (
-    <div style={{ margin: "48px 0px" }}>
+    <div style={{ overflow: "hidden", padding: "0px 20px" }}>
       <SectionHeading
         title="Our Featured Rooms"
         subTitle="Explore our featured rooms and book your available slots anytime"
