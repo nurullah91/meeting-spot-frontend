@@ -8,7 +8,7 @@ import {
   useGetAvailableDatesQuery,
   useGetSingleRoomQuery,
 } from "../../redux/features/user/userAccess.api";
-import { FieldValues, SubmitHandler } from "react-hook-form";
+import { FieldValues, SubmitHandler, useFormContext } from "react-hook-form";
 import MSForm from "../../components/form/MSForm";
 import MSInput from "../../components/form/MSInput";
 import CustomContainer from "../../components/CustomContainer";
@@ -54,10 +54,6 @@ const Booking: React.FC = () => {
     const userSelectedDate = format(date, "yyyy-MM-dd");
     setSelectedDate(userSelectedDate);
   };
-  // const handleSelect = (date: Date) => {
-  //   const userSelectedDate = format(date, "yyyy-MM-dd");
-  //   setSelectedDate(userSelectedDate);
-  // };
 
   // Fetch available slots when a date is selected
   const { data: availableSlots, isFetching } = useGetAllAvailableSlotsQuery(
@@ -106,6 +102,10 @@ const Booking: React.FC = () => {
     dispatch(addToBooking(bookingData));
     navigate(`/booking/${roomId}/checkout`);
   };
+
+  const { watch } = useFormContext();
+  const selectedSlots = watch("slots");
+
   return (
     <div style={{ margin: "100px 0px" }}>
       <CustomContainer>
@@ -173,9 +173,18 @@ const Booking: React.FC = () => {
 
                 <Button
                   type="primary"
-                  style={selectedDate ? primaryButton : {}}
-                  disabled={!selectedDate}
+                  style={
+                    selectedDate && selectedSlots?.length
+                      ? primaryButton
+                      : { backgroundColor: "#ccc", cursor: "not-allowed" }
+                  } // [2️⃣ Update button style]
+                  disabled={!selectedDate || !selectedSlots?.length} // [3️⃣ Disable the button]
                   htmlType="submit"
+
+                  // type="primary"
+                  // style={selectedDate ? primaryButton : {}}
+                  // disabled={!selectedDate}
+                  // htmlType="submit"
                 >
                   Proceed to Checkout
                 </Button>
@@ -187,12 +196,6 @@ const Booking: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
-              {/* <Calendar
-                color="#052893"
-                disabledDates={availableDateInfo?.data}
-                // date={selectedDate ? new Date(selectedDate) : new Date()}
-                onChange={handleSelect}
-              /> */}
               <Calendar
                 color="#052893"
                 date={userSelectedDate}
