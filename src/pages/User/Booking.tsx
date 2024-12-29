@@ -8,26 +8,27 @@ import {
   useGetAvailableDatesQuery,
   useGetSingleRoomQuery,
 } from "../../redux/features/user/userAccess.api";
-import { FieldValues, SubmitHandler, useFormContext } from "react-hook-form";
+import { FieldValues, SubmitHandler } from "react-hook-form";
 import MSForm from "../../components/form/MSForm";
 import MSInput from "../../components/form/MSInput";
 import CustomContainer from "../../components/CustomContainer";
 import { useNavigate, useParams } from "react-router-dom";
-import MSSelect from "../../components/form/MSSelect";
 import { addToBooking } from "../../redux/features/user/bookingSlice";
 import { TSlot } from "../../types/user.types";
 
-import "react-date-range/dist/styles.css"; // main style file
+import "react-date-range/dist/styles.css";
 import "react-date-range/dist/theme/default.css";
 import { Calendar } from "react-date-range";
 import { format, isSameDay } from "date-fns";
 import { primaryButton } from "../../config/themeConfig";
+import MSSelect from "../../components/form/MSSelect";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { bookingSchema } from "../../Schemas/bookingSchema";
 const Booking: React.FC = () => {
   const [selectedDate, setSelectedDate] = useState<string | undefined>(
     undefined
   );
   const userSelectedDate = selectedDate ? new Date(selectedDate) : undefined;
-  // const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const user = useAppSelector(useCurrentUser);
   const navigate = useNavigate();
   const { roomId } = useParams();
@@ -103,9 +104,6 @@ const Booking: React.FC = () => {
     navigate(`/booking/${roomId}/checkout`);
   };
 
-  const { watch } = useFormContext();
-  const selectedSlots = watch("slots");
-
   return (
     <div style={{ margin: "100px 0px" }}>
       <CustomContainer>
@@ -126,7 +124,11 @@ const Booking: React.FC = () => {
           </motion.h1>
           <div className="booking-container">
             <div>
-              <MSForm onSubmit={handleSubmit} defaultValues={userDefaultValues}>
+              <MSForm
+                onSubmit={handleSubmit}
+                defaultValues={userDefaultValues}
+                resolver={zodResolver(bookingSchema)}
+              >
                 <MSSelect
                   label="Choose Your Slot"
                   name="slots"
@@ -174,17 +176,12 @@ const Booking: React.FC = () => {
                 <Button
                   type="primary"
                   style={
-                    selectedDate && selectedSlots?.length
+                    selectedDate
                       ? primaryButton
                       : { backgroundColor: "#ccc", cursor: "not-allowed" }
-                  } // [2️⃣ Update button style]
-                  disabled={!selectedDate || !selectedSlots?.length} // [3️⃣ Disable the button]
+                  }
+                  disabled={!selectedDate}
                   htmlType="submit"
-
-                  // type="primary"
-                  // style={selectedDate ? primaryButton : {}}
-                  // disabled={!selectedDate}
-                  // htmlType="submit"
                 >
                   Proceed to Checkout
                 </Button>
