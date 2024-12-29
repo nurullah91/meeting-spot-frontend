@@ -5,6 +5,7 @@ import { useCurrentUser } from "../../redux/features/auth/authSlice";
 import { motion } from "framer-motion";
 import {
   useGetAllAvailableSlotsQuery,
+  useGetAvailableDatesQuery,
   useGetSingleRoomQuery,
 } from "../../redux/features/user/userAccess.api";
 import { FieldValues, SubmitHandler } from "react-hook-form";
@@ -19,15 +20,44 @@ import { TSlot } from "../../types/user.types";
 import "react-date-range/dist/styles.css"; // main style file
 import "react-date-range/dist/theme/default.css";
 import { Calendar } from "react-date-range";
-import { format } from "date-fns";
+import { format, isSameDay } from "date-fns";
 import { primaryButton } from "../../config/themeConfig";
 const Booking: React.FC = () => {
-  const [selectedDate, setSelectedDate] = useState<string | null>(null);
+  const [selectedDate, setSelectedDate] = useState<string | undefined>(
+    undefined
+  );
+  const userSelectedDate = selectedDate ? new Date(selectedDate) : undefined;
+  // const [selectedDate, setSelectedDate] = useState<string | null>(null);
   const user = useAppSelector(useCurrentUser);
   const navigate = useNavigate();
   const { roomId } = useParams();
   const dispatch = useAppDispatch();
   const { data: roomInfo } = useGetSingleRoomQuery(roomId as string);
+
+  const { data: availableDateInfo } = useGetAvailableDatesQuery(
+    roomId as string
+  );
+
+  // Convert available dates to Date objects
+  const availableDatesParsed = availableDateInfo?.data?.map(
+    (date: string) => new Date(date)
+  );
+
+  // Check if a date is available
+  const isDateAvailable = (date: Date) =>
+    availableDatesParsed?.some((availableDate: Date) =>
+      isSameDay(date, availableDate)
+    );
+
+  // Handle date selection
+  const handleSelect = (date: Date) => {
+    const userSelectedDate = format(date, "yyyy-MM-dd");
+    setSelectedDate(userSelectedDate);
+  };
+  // const handleSelect = (date: Date) => {
+  //   const userSelectedDate = format(date, "yyyy-MM-dd");
+  //   setSelectedDate(userSelectedDate);
+  // };
 
   // Fetch available slots when a date is selected
   const { data: availableSlots, isFetching } = useGetAllAvailableSlotsQuery(
@@ -44,10 +74,6 @@ const Booking: React.FC = () => {
     address: user?.address,
   };
 
-  const handleSelect = (date: Date) => {
-    const userSelectedDate = format(date, "yyyy-MM-dd");
-    setSelectedDate(userSelectedDate);
-  };
   const slotOptions = availableSlots?.data?.map((slot: TSlot) => ({
     label: `Room ${slot?.room?.roomNo} Time ${slot.startTime}-${slot.endTime}`,
     value: `${slot._id}|${slot.startTime}-${slot.endTime}`,
@@ -161,10 +187,46 @@ const Booking: React.FC = () => {
                 borderRadius: "5px",
               }}
             >
+              {/* <Calendar
+                color="#052893"
+                disabledDates={availableDateInfo?.data}
+                // date={selectedDate ? new Date(selectedDate) : new Date()}
+                onChange={handleSelect}
+              /> */}
               <Calendar
                 color="#052893"
-                date={selectedDate ? new Date(selectedDate) : new Date()}
+                date={userSelectedDate}
                 onChange={handleSelect}
+                dayContentRenderer={(date) => {
+                  const isAvailable = isDateAvailable(date);
+                  const isSelected =
+                    userSelectedDate && isSameDay(userSelectedDate, date);
+                  return (
+                    <div
+                      style={{
+                        display: "flex",
+                        justifyContent: "center",
+                        alignItems: "center",
+                        width: "100%",
+                        height: "100%",
+                        backgroundColor: isSelected
+                          ? "#052893"
+                          : isAvailable
+                          ? "rgba(5, 40, 147, 0.2)"
+                          : "transparent",
+                        color: isSelected
+                          ? "#fff"
+                          : isAvailable
+                          ? "#052893"
+                          : "#ccc",
+                        fontWeight: isAvailable ? "bold" : "normal",
+                        borderRadius: "20px",
+                      }}
+                    >
+                      {date.getDate()}
+                    </div>
+                  );
+                }}
               />
             </div>
           </div>

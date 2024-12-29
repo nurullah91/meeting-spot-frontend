@@ -46,6 +46,16 @@ const userAccessApi = baseApi.injectEndpoints({
       providesTags: ["singleRoom"],
     }),
 
+    getAvailableDates: builder.query({
+      query: (roomId: string) => {
+        return {
+          url: `/slots/${roomId}/available-dates`,
+          method: "GET",
+        };
+      },
+      providesTags: ["availableDates"],
+    }),
+
     createBooking: builder.mutation({
       query: (data) => {
         return {
@@ -72,6 +82,7 @@ const userAccessApi = baseApi.injectEndpoints({
 export const {
   useGetAllRoomsQuery,
   useGetSingleRoomQuery,
+  useGetAvailableDatesQuery,
   useGetAllAvailableSlotsQuery,
   useCreateBookingMutation,
   useGetMyBookingsQuery,
