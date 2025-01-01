@@ -17,6 +17,13 @@ export type TRoom = {
   floorNo: number;
   pricePerSlot: number;
   capacity: number;
+  avgRatings: number;
+  description: string;
+  details: string;
+  discount: number;
+  ratings: number[];
+  isFeatured: boolean;
+  category: string;
   amenities: string[];
   createdAt: string;
   isDeleted: boolean;

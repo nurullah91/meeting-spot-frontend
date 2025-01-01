@@ -3,11 +3,14 @@ import { Button } from "antd";
 import { Link } from "react-router-dom";
 import { TRoom } from "../../types/user.types";
 import { primaryButton } from "../../config/themeConfig";
+import { Rating } from "@smastrom/react-rating";
+import "@smastrom/react-rating/style.css";
 
 type TRoomCardProps = {
   room: TRoom;
 };
 const RoomCard: React.FC<TRoomCardProps> = ({ room }) => {
+  console.log(room);
   return (
     <div className="roomCardWithoutAnimation">
       <div>
@@ -27,6 +30,8 @@ const RoomCard: React.FC<TRoomCardProps> = ({ room }) => {
             Price per Slot:{" "}
             <span style={{ color: "orangered" }}>${room.pricePerSlot}</span>
           </h4>
+
+          <Rating style={{ maxWidth: 150 }} value={room.avgRatings} readOnly />
         </div>
       </div>
       <Link to={`/rooms/${room._id}`} style={{ padding: "1rem" }}>
