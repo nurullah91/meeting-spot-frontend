@@ -80,10 +80,10 @@ const Hero: React.FC = () => {
             alignItems: "center",
           }}
         >
-          <h1 style={{ fontSize: "64px", textAlign: "center" }}>
+          <h1 className="heroTextHeading">
             Book Your Ideal Meeting Room with Ease.
           </h1>
-          <h3 style={{ fontSize: "32px", textAlign: "center" }}>
+          <h3 className="heroTextSubHeading">
             Efficient, hassle-free room booking for all your meeting needs
           </h3>
           <Link style={{ marginTop: "10px" }} to={"/rooms"}>

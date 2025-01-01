@@ -20,3 +20,23 @@
   height: 85vh;
   object-fit: cover;
 }
+
+.heroTextHeading {
+  font-size: 32px;
+  text-align: center;
+}
+
+.heroTextSubHeading {
+  text-align: center;
+  font-size: 16px;
+}
+
+@media only screen and (min-width: 768px) {
+  .heroTextHeading {
+    font-size: 64px;
+  }
+
+  .heroTextSubHeading {
+    font-size: 32px;
+  }
+}

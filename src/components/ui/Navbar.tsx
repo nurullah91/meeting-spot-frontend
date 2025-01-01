@@ -78,7 +78,6 @@ const Navbar: React.FC = () => {
       <div className="navContent">
         <div style={{ display: "flex", gap: "10px", alignItems: "center" }}>
           <Button
-            ghost
             size="middle"
             className="menuTriggerButton"
             onClick={() => setIsOpenMenu(!isOpenMenu)}
