@@ -267,14 +267,11 @@
   .dashboard-content {
     margin-left: 200px;
   }
-  .image-gallery {
-    width: 50%;
-  }
   .room-info {
     width: 50%;
   }
   .room-details-container {
-    flex-direction: row;
+    flex-direction: column;
   }
 
   .serviceCardContainer {

@@ -1,21 +1,26 @@
-import React, { useState } from "react";
-import { useNavigate, useParams } from "react-router-dom";
+import React from "react";
+import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGetSingleRoomQuery } from "../../redux/features/user/userAccess.api";
 import { Button } from "antd";
 import CustomContainer from "../../components/CustomContainer";
 import { motion } from "framer-motion";
 import { primaryButton } from "../../config/themeConfig";
+import "./RoomDetails.styles.css";
+
+// light gallery styles
+import LightGallery from "lightgallery/react";
+import "lightgallery/css/lightgallery.css";
+import "lightgallery/css/lg-zoom.css";
+import "lightgallery/css/lg-thumbnail.css";
+import lgThumbnail from "lightgallery/plugins/thumbnail";
+import lgZoom from "lightgallery/plugins/zoom";
 
 const RoomDetails: React.FC = () => {
   const { roomId } = useParams();
   const navigate = useNavigate();
   const { data } = useGetSingleRoomQuery(roomId as string);
-  const [previewImage, setPreviewImage] = useState("");
-  const allDetailImage = data?.data?.detailImages;
-  const detailImages =
-    allDetailImage?.length > 4
-      ? allDetailImage.slice(0, 4)
-      : allDetailImage || [];
+
+  const allDetailImages = data?.data?.detailImages || [];
 
   // Animation for the room info
   const roomInfoAnimation = {
@@ -29,38 +34,52 @@ const RoomDetails: React.FC = () => {
     boxShadow: "0px 10px 20px rgba(255, 105, 135, 0.3)",
   };
 
+  const displayedImages =
+    allDetailImages?.length > 3
+      ? [data?.data?.img, ...allDetailImages.slice(0, 3)]
+      : [data?.data?.img, ...allDetailImages];
+
   return (
     <div style={{ minHeight: "100vh" }}>
       <CustomContainer>
         <div className="room-details-container" style={{ margin: "100px 0px" }}>
-          <div className="image-gallery">
-            <div>
-              <img
-                style={{ width: "100%", height: "100%" }}
-                src={previewImage || data?.data?.img}
-                alt="Room Image"
-              />
-            </div>
-            <div style={{ display: "flex", gap: "10px" }}>
-              {detailImages?.map((image: string, index: number) => (
-                <div
-                  key={index}
-                  onClick={() => setPreviewImage(image)}
-                  className={`${
-                    previewImage === image
-                      ? "activePreviewImage"
-                      : "previewImage"
-                  }`}
-                >
-                  <img
-                    style={{ width: "100%", height: "100%" }}
-                    src={image}
-                    alt="Room detail image"
-                  />
-                </div>
-              ))}
-            </div>
-          </div>
+          <LightGallery
+            speed={500}
+            plugins={[lgThumbnail, lgZoom]}
+            elementClassNames="image-gallery"
+            dynamic={true}
+            dynamicEl={[
+              { src: data?.data?.img },
+              ...allDetailImages.map((img: string) => ({ src: img })),
+            ]}
+          >
+            {displayedImages?.map((image, index) => (
+              <Link
+                to={image}
+                key={index}
+                className={`${
+                  index === 0
+                    ? "image-gallery-thumbnail"
+                    : index === 1
+                    ? "first-detail-image"
+                    : "detail-image"
+                }`}
+                style={{
+                  width: "100%",
+                  height: "100%",
+                  borderRadius: "8px",
+                  overflow: "hidden",
+                  cursor: "pointer",
+                }}
+              >
+                <img
+                  src={image}
+                  alt={`Room Image ${index}`}
+                  style={{ width: "100%", height: "100%" }}
+                />
+              </Link>
+            ))}
+          </LightGallery>
 
           <motion.div
             className="room-info"
@@ -88,6 +107,7 @@ const RoomDetails: React.FC = () => {
               >
                 {data?.data?.name}
               </motion.h1>
+              <p>Description: {data?.data?.description}</p>
               <p style={{ fontSize: "18px" }}>
                 <strong>Room No.:</strong> <span>{data?.data?.roomNo}</span>
               </p>

@@ -12,6 +12,10 @@ import { fadeIn } from "../../lib/motionVariant";
 const FeaturedRoom: React.FC = () => {
   const { data: roomsData } = useGetAllRoomsQuery([
     {
+      name: "isFeatured",
+      value: true,
+    },
+    {
       name: "page",
       value: 1,
     },
@@ -20,6 +24,8 @@ const FeaturedRoom: React.FC = () => {
       value: 4,
     },
   ]);
+
+  console.log(roomsData);
   return (
     <div style={{ overflow: "hidden", padding: "0px 20px" }}>
       <SectionHeading

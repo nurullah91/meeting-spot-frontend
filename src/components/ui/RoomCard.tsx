@@ -3,11 +3,17 @@ import { Button } from "antd";
 import { Link } from "react-router-dom";
 import { TRoom } from "../../types/user.types";
 import { primaryButton } from "../../config/themeConfig";
-import { Rating } from "@smastrom/react-rating";
+import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
 import "@smastrom/react-rating/style.css";
 
 type TRoomCardProps = {
   room: TRoom;
+};
+
+const myStyles = {
+  itemShapes: ThinRoundedStar,
+  activeFillColor: "#ffb700",
+  inactiveFillColor: "#939291",
 };
 const RoomCard: React.FC<TRoomCardProps> = ({ room }) => {
   console.log(room);
@@ -30,8 +36,17 @@ const RoomCard: React.FC<TRoomCardProps> = ({ room }) => {
             Price per Slot:{" "}
             <span style={{ color: "orangered" }}>${room.pricePerSlot}</span>
           </h4>
-
-          <Rating style={{ maxWidth: 150 }} value={room.avgRatings} readOnly />
+          <div style={{ display: "flex", gap: "5px", alignItems: "center" }}>
+            <Rating
+              style={{ maxWidth: 100 }}
+              value={room.avgRatings}
+              itemStyles={myStyles}
+              readOnly
+            />
+            <span style={{ fontSize: "18px" }}>
+              ({room.avgRatings.toFixed(1)})
+            </span>
+          </div>
         </div>
       </div>
       <Link to={`/rooms/${room._id}`} style={{ padding: "1rem" }}>
