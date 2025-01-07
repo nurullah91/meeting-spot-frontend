@@ -47,11 +47,11 @@ const RoomDetails: React.FC = () => {
             speed={500}
             plugins={[lgThumbnail, lgZoom]}
             elementClassNames="image-gallery"
-            dynamic={true}
-            dynamicEl={[
-              { src: data?.data?.img },
-              ...allDetailImages.map((img: string) => ({ src: img })),
-            ]}
+            // dynamic={true}
+            // dynamicEl={[
+            //   { src: data?.data?.img },
+            //   ...allDetailImages.map((img: string) => ({ src: img })),
+            // ]}
           >
             {displayedImages?.map((image, index) => (
               <Link
