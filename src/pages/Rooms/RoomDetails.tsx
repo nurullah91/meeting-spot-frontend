@@ -14,12 +14,15 @@ import "lightgallery/css/lg-zoom.css";
 import "lightgallery/css/lg-thumbnail.css";
 import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
+import { TRoom } from "../../types/user.types";
+import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
 
 const RoomDetails: React.FC = () => {
   const { roomId } = useParams();
   const navigate = useNavigate();
   const { data } = useGetSingleRoomQuery(roomId as string);
 
+  const roomData: TRoom = data?.data;
   const allDetailImages = data?.data?.detailImages || [];
 
   // Animation for the room info
@@ -32,6 +35,12 @@ const RoomDetails: React.FC = () => {
   const buttonHover = {
     scale: 1.05,
     boxShadow: "0px 10px 20px rgba(255, 105, 135, 0.3)",
+  };
+
+  const myStarStyles = {
+    itemShapes: ThinRoundedStar,
+    activeFillColor: "#ffb700",
+    inactiveFillColor: "#939291",
   };
 
   const displayedImages =
@@ -48,10 +57,10 @@ const RoomDetails: React.FC = () => {
             plugins={[lgThumbnail, lgZoom]}
             elementClassNames="image-gallery"
             dynamic={true}
-            dynamicEl={[
-              { src: data?.data?.img },
-              ...allDetailImages.map((img: string) => ({ src: img })),
-            ]}
+            // dynamicEl={[
+            //   { src: data?.data?.img },
+            //   ...allDetailImages.map((img: string) => ({ src: img })),
+            // ]}
           >
             {displayedImages?.map((image, index) => (
               <Link
@@ -86,12 +95,6 @@ const RoomDetails: React.FC = () => {
             initial="hidden"
             animate="visible"
             variants={roomInfoAnimation}
-            style={{
-              borderRadius: "12px",
-              padding: "20px",
-              boxShadow: "0px 10px 30px rgba(0, 0, 0, 0.1)",
-              color: "#333",
-            }}
           >
             <motion.div style={{ marginBottom: "20px" }}>
               <motion.h1
@@ -107,6 +110,20 @@ const RoomDetails: React.FC = () => {
               >
                 {data?.data?.name}
               </motion.h1>
+              <div
+                style={{ display: "flex", gap: "5px", alignItems: "center" }}
+              >
+                <Rating
+                  style={{ maxWidth: 100 }}
+                  value={roomData?.avgRatings}
+                  itemStyles={myStarStyles}
+                  readOnly
+                />
+                <span style={{ fontSize: "18px" }}>
+                  ({roomData?.avgRatings?.toFixed(1)})
+                </span>
+              </div>
+
               <p>Description: {data?.data?.description}</p>
               <p style={{ fontSize: "18px" }}>
                 <strong>Room No.:</strong> <span>{data?.data?.roomNo}</span>

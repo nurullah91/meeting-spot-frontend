@@ -188,10 +188,13 @@
   border: 2px solid transparent;
 }
 .room-info {
-  width: 100%;
   display: flex;
   justify-content: space-between;
   flex-direction: column;
+  border-radius: 12px;
+  padding: 20px;
+  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
+  color: #333;
 }
 
 .booking-container {
@@ -267,9 +270,9 @@
   .dashboard-content {
     margin-left: 200px;
   }
-  .room-info {
+  /* .room-info {
     width: 50%;
-  }
+  } */
   .room-details-container {
     flex-direction: column;
   }
