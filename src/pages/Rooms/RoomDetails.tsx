@@ -125,6 +125,9 @@ const RoomDetails: React.FC = () => {
               </div>
 
               <p>Description: {data?.data?.description}</p>
+              <p>
+                <b>Details:</b> {roomData?.details}
+              </p>
               <p style={{ fontSize: "18px" }}>
                 <strong>Room No.:</strong> <span>{data?.data?.roomNo}</span>
               </p>
