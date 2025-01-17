@@ -47,7 +47,7 @@ const RoomDetails: React.FC = () => {
     allDetailImages?.length > 3
       ? [data?.data?.img, ...allDetailImages.slice(0, 3)]
       : [data?.data?.img, ...allDetailImages];
-
+  console.log(roomData);
   return (
     <div style={{ minHeight: "100vh" }}>
       <CustomContainer>
@@ -164,7 +164,6 @@ const RoomDetails: React.FC = () => {
               <Button
                 type="primary"
                 size="large"
-                block
                 onClick={() => navigate(`/booking/${data?.data?._id}`)}
                 style={primaryButton}
               >
