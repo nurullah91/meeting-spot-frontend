@@ -16,3 +16,11 @@
 .detail-image {
   grid-column: span 1;
 }
+
+.roomOverview {
+  margin: 32px 8px;
+  display: flex;
+  gap: 16px;
+  justify-content: space-between;
+  align-items: start;
+}

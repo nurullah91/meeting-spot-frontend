@@ -26,10 +26,10 @@ const RoomDetails: React.FC = () => {
   const allDetailImages = data?.data?.detailImages || [];
 
   // Animation for the room info
-  const roomInfoAnimation = {
-    hidden: { opacity: 0, y: 20 },
-    visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  };
+  // const roomInfoAnimation = {
+  //   hidden: { opacity: 0, y: 20 },
+  //   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  // };
 
   // Animation for the button
   const buttonHover = {
@@ -56,11 +56,6 @@ const RoomDetails: React.FC = () => {
             speed={500}
             plugins={[lgThumbnail, lgZoom]}
             elementClassNames="image-gallery"
-            dynamic={true}
-            // dynamicEl={[
-            //   { src: data?.data?.img },
-            //   ...allDetailImages.map((img: string) => ({ src: img })),
-            // ]}
           >
             {displayedImages?.map((image, index) => (
               <Link
@@ -83,94 +78,111 @@ const RoomDetails: React.FC = () => {
               >
                 <img
                   src={image}
-                  alt={`Room Image ${index}`}
+                  alt={`Room Image ${index + 1}`}
                   style={{ width: "100%", height: "100%" }}
                 />
               </Link>
             ))}
           </LightGallery>
 
-          <motion.div
-            className="room-info"
-            initial="hidden"
-            animate="visible"
-            variants={roomInfoAnimation}
-          >
-            <motion.div style={{ marginBottom: "20px" }}>
-              <motion.h1
-                whileHover={{ scale: 1.05 }}
-                transition={{ duration: 0.3 }}
-                style={{
-                  fontSize: "40px",
-                  fontWeight: "bold",
-                  color: "#052893",
-                  textShadow: "-3px 2px 10px #444442",
-                  marginBottom: "15px",
-                }}
-              >
-                {data?.data?.name}
-              </motion.h1>
-              <div
-                style={{ display: "flex", gap: "5px", alignItems: "center" }}
-              >
-                <Rating
-                  style={{ maxWidth: 100 }}
-                  value={roomData?.avgRatings}
-                  itemStyles={myStarStyles}
-                  readOnly
-                />
-                <span style={{ fontSize: "18px" }}>
-                  ({roomData?.avgRatings?.toFixed(1)})
-                </span>
+          <div className="room-info">
+            <div style={{ marginBottom: "20px" }}>
+              <div className="roomOverview">
+                {/* Name Part */}
+                <div>
+                  <h4>{roomData?.category}</h4>
+                  <motion.h1
+                    whileHover={{ scale: 1.05 }}
+                    transition={{ duration: 0.3 }}
+                    style={{
+                      fontSize: "40px",
+                      fontWeight: "bold",
+                      color: "#052893",
+                      textShadow: "-3px 2px 10px #444442",
+                      marginBottom: "15px",
+                    }}
+                  >
+                    {data?.data?.name}
+                  </motion.h1>
+                  <div>
+                    <p style={{ fontSize: "18px" }}>
+                      <strong>Amenities:</strong>{" "}
+                      <span style={{ color: "#052893" }}>
+                        {data?.data?.amenities.join(", ")}
+                      </span>
+                    </p>
+                  </div>
+                </div>
+
+                {/* Info Part */}
+                <div>
+                  <p style={{ fontSize: "18px" }}>
+                    <strong>Room No.:</strong> <span>{data?.data?.roomNo}</span>
+                  </p>
+                  <p style={{ fontSize: "18px" }}>
+                    <strong>Floor No.:</strong>{" "}
+                    <span>{data?.data?.floorNo}</span>
+                  </p>
+                  <p style={{ fontSize: "18px" }}>
+                    <strong>Capacity:</strong>{" "}
+                    <span>{data?.data?.capacity}</span>
+                  </p>
+                  <p style={{ fontSize: "18px" }}>
+                    <strong>Price Per Slot:</strong>{" "}
+                    <span
+                      style={{
+                        fontWeight: "bolder",
+                        color: "#ff4757",
+                        fontSize: "20px",
+                      }}
+                    >
+                      ${data?.data?.pricePerSlot}
+                    </span>
+                  </p>
+
+                  {/* Rating part */}
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "5px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <Rating
+                      style={{ maxWidth: 100 }}
+                      value={roomData?.avgRatings}
+                      itemStyles={myStarStyles}
+                      readOnly
+                    />
+                    <span style={{ fontSize: "18px" }}>
+                      ({roomData?.avgRatings?.toFixed(1)})
+                    </span>
+                  </div>
+                </div>
               </div>
 
-              <p>Description: {data?.data?.description}</p>
+              <p>Description: {roomData?.description}</p>
               <p>
                 <b>Details:</b> {roomData?.details}
               </p>
-              <p style={{ fontSize: "18px" }}>
-                <strong>Room No.:</strong> <span>{data?.data?.roomNo}</span>
-              </p>
-              <p style={{ fontSize: "18px" }}>
-                <strong>Floor No.:</strong> <span>{data?.data?.floorNo}</span>
-              </p>
-              <p style={{ fontSize: "18px" }}>
-                <strong>Capacity:</strong> <span>{data?.data?.capacity}</span>
-              </p>
-              <p style={{ fontSize: "18px" }}>
-                <strong>Price Per Slot:</strong>{" "}
-                <span
-                  style={{
-                    fontWeight: "bolder",
-                    color: "#ff4757",
-                    fontSize: "20px",
-                  }}
-                >
-                  ${data?.data?.pricePerSlot}
-                </span>
-              </p>
-              <p style={{ fontSize: "18px" }}>
-                <strong>Amenities:</strong>{" "}
-                <span style={{ color: "#052893" }}>
-                  {data?.data?.amenities.join(", ")}
-                </span>
-              </p>
-            </motion.div>
+            </div>
 
             <motion.div
               whileHover={buttonHover}
               transition={{ type: "spring", stiffness: 300 }}
+              style={{ display: "inline" }}
             >
               <Button
                 type="primary"
                 size="large"
+                block={false}
                 onClick={() => navigate(`/booking/${data?.data?._id}`)}
                 style={primaryButton}
               >
                 Book Now
               </Button>
             </motion.div>
-          </motion.div>
+          </div>
         </div>
       </CustomContainer>
     </div>
