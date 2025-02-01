@@ -128,16 +128,17 @@ const RoomDetails: React.FC = () => {
                     <span>{data?.data?.capacity}</span>
                   </p>
                   <p style={{ fontSize: "18px" }}>
-                    <strong>Price Per Slot:</strong>{" "}
+                    {" "}
                     <span
                       style={{
                         fontWeight: "bolder",
                         color: "#ff4757",
-                        fontSize: "20px",
+                        fontSize: "32px",
                       }}
                     >
                       ${data?.data?.pricePerSlot}
                     </span>
+                    <strong>/Per Slot</strong>
                   </p>
 
                   {/* Rating part */}
@@ -149,7 +150,7 @@ const RoomDetails: React.FC = () => {
                     }}
                   >
                     <Rating
-                      style={{ maxWidth: 100 }}
+                      style={{ maxWidth: 150 }}
                       value={roomData?.avgRatings}
                       itemStyles={myStarStyles}
                       readOnly
