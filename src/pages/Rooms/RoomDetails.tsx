@@ -117,10 +117,10 @@ const RoomDetails: React.FC = () => {
                 {/* Info Part */}
                 <div>
                   <p style={{ fontSize: "18px" }}>
-                    <strong>Room No.:</strong> <span>{data?.data?.roomNo}</span>
+                    <strong>Room No.</strong> <span>{data?.data?.roomNo}</span>
                   </p>
                   <p style={{ fontSize: "18px" }}>
-                    <strong>Floor No.:</strong>{" "}
+                    <strong>Floor No.</strong>{" "}
                     <span>{data?.data?.floorNo}</span>
                   </p>
                   <p style={{ fontSize: "18px" }}>
@@ -132,7 +132,7 @@ const RoomDetails: React.FC = () => {
                     <span
                       style={{
                         fontWeight: "bolder",
-                        color: "#ff4757",
+                        color: "#ff8400",
                         fontSize: "32px",
                       }}
                     >
