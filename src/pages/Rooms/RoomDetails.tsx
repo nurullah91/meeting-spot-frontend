@@ -105,7 +105,7 @@ const RoomDetails: React.FC = () => {
                     {data?.data?.name}
                   </motion.h1>
                   <div>
-                    <p style={{ fontSize: "18px" }}>
+                    <p>
                       <strong>Amenities:</strong>{" "}
                       <span style={{ color: "#052893" }}>
                         {data?.data?.amenities.join(", ")}
@@ -116,20 +116,25 @@ const RoomDetails: React.FC = () => {
 
                 {/* Info Part */}
                 <div>
-                  <p style={{ fontSize: "18px" }}>
+                  <p>
                     <strong>Room No.</strong> <span>{data?.data?.roomNo}</span>
                   </p>
-                  <p style={{ fontSize: "18px" }}>
+                  <p>
                     <strong>Floor No.</strong>{" "}
                     <span>{data?.data?.floorNo}</span>
                   </p>
-                  <p style={{ fontSize: "18px" }}>
+                  <p>
                     <strong>Capacity:</strong>{" "}
                     <span>{data?.data?.capacity}</span>
                   </p>
-                  <p style={{ fontSize: "18px" }}>
-                    {" "}
-                    <span
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "12px",
+                      alignItems: "center",
+                    }}
+                  >
+                    <h1
                       style={{
                         fontWeight: "bolder",
                         color: "#ff8400",
@@ -137,9 +142,16 @@ const RoomDetails: React.FC = () => {
                       }}
                     >
                       ${data?.data?.pricePerSlot}
-                    </span>
+                    </h1>
+                    {roomData?.discount == 0 && (
+                      <h2 style={{ color: "#565656" }}>
+                        <del>
+                          <i>{roomData?.discount}%</i>
+                        </del>
+                      </h2>
+                    )}
                     <strong>/Per Slot</strong>
-                  </p>
+                  </div>
 
                   {/* Rating part */}
                   <div
@@ -155,9 +167,7 @@ const RoomDetails: React.FC = () => {
                       itemStyles={myStarStyles}
                       readOnly
                     />
-                    <span style={{ fontSize: "18px" }}>
-                      ({roomData?.avgRatings?.toFixed(1)})
-                    </span>
+                    <span>({roomData?.avgRatings?.toFixed(1)})</span>
                   </div>
                 </div>
               </div>
