@@ -7,6 +7,8 @@ import { TbFilterEdit } from "react-icons/tb";
 import { FieldValues, SubmitHandler } from "react-hook-form";
 import RoomFilterDrawer from "./RoomFilterDrawer";
 import { TRoom } from "../../types/user.types";
+import { motion } from "framer-motion";
+import { fadeIn } from "../../lib/motionVariant";
 
 const Rooms: React.FC = () => {
   const [openDrawer, setOpenDrawer] = useState(false);
@@ -158,14 +160,21 @@ const Rooms: React.FC = () => {
 
           <div style={{ margin: "30px 0px" }}>
             <Row gutter={[15, 15]}>
-              {allRoomsData?.data?.result?.map((room: TRoom) => (
+              {allRoomsData?.data?.result?.map((room: TRoom, index: number) => (
                 <Col
                   span={24}
                   md={{ span: 12 }}
                   lg={{ span: 6 }}
                   key={room._id}
                 >
-                  <RoomCard room={room} />
+                  <motion.div
+                    variants={fadeIn(index % 2 === 1 ? "left" : "right", 0)}
+                    initial="hidden"
+                    whileInView={"show"}
+                    viewport={{ once: false, amount: 0.7 }}
+                  >
+                    <RoomCard room={room} />
+                  </motion.div>
                 </Col>
               ))}
             </Row>
