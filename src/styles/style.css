@@ -174,29 +174,6 @@
 .testimonialImg {
   width: 100%;
 }
-.room-details-container {
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  justify-content: space-between;
-}
-.activePreviewImage {
-  border: 2px solid #f1c503;
-}
-
-.previewImage {
-  border: 2px solid transparent;
-}
-.room-info {
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
-  border-radius: 12px;
-  padding: 20px;
-  box-shadow: 0px 10px 30px rgba(0, 0, 0, 0.1);
-  color: #333;
-}
-
 .booking-container {
   display: flex;
   flex-direction: column-reverse;
@@ -270,13 +247,6 @@
   .dashboard-content {
     margin-left: 200px;
   }
-  /* .room-info {
-    width: 50%;
-  } */
-  .room-details-container {
-    flex-direction: column;
-  }
-
   .serviceCardContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);

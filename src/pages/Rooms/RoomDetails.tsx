@@ -16,6 +16,7 @@ import lgThumbnail from "lightgallery/plugins/thumbnail";
 import lgZoom from "lightgallery/plugins/zoom";
 import { TRoom } from "../../types/user.types";
 import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
+import { fadeIn } from "../../lib/motionVariant";
 
 const RoomDetails: React.FC = () => {
   const { roomId } = useParams();
@@ -24,18 +25,6 @@ const RoomDetails: React.FC = () => {
 
   const roomData: TRoom = data?.data;
   const allDetailImages = data?.data?.detailImages || [];
-
-  // Animation for the room info
-  // const roomInfoAnimation = {
-  //   hidden: { opacity: 0, y: 20 },
-  //   visible: { opacity: 1, y: 0, transition: { duration: 0.6 } },
-  // };
-
-  // Animation for the button
-  const buttonHover = {
-    scale: 1.05,
-    boxShadow: "0px 10px 20px rgba(255, 105, 135, 0.3)",
-  };
 
   const myStarStyles = {
     itemShapes: ThinRoundedStar,
@@ -85,9 +74,10 @@ const RoomDetails: React.FC = () => {
             ))}
           </LightGallery>
 
+          {/* Room Details Information part */}
           <div className="room-info">
             <div style={{ marginBottom: "20px" }}>
-              <div className="roomOverview">
+              <motion.div variants={fadeIn("up", 0)} className="roomOverview">
                 {/* Name Part */}
                 <div>
                   <h4>{roomData?.category}</h4>
@@ -170,7 +160,7 @@ const RoomDetails: React.FC = () => {
                     <span>({roomData?.avgRatings?.toFixed(1)})</span>
                   </div>
                 </div>
-              </div>
+              </motion.div>
 
               <p>Description: {roomData?.description}</p>
               <p>
@@ -178,21 +168,14 @@ const RoomDetails: React.FC = () => {
               </p>
             </div>
 
-            <motion.div
-              whileHover={buttonHover}
-              transition={{ type: "spring", stiffness: 300 }}
-              style={{ display: "inline" }}
+            <Button
+              type="primary"
+              size="large"
+              onClick={() => navigate(`/booking/${data?.data?._id}`)}
+              style={primaryButton}
             >
-              <Button
-                type="primary"
-                size="large"
-                block={false}
-                onClick={() => navigate(`/booking/${data?.data?._id}`)}
-                style={primaryButton}
-              >
-                Book Now
-              </Button>
-            </motion.div>
+              Book Now
+            </Button>
           </div>
         </div>
       </CustomContainer>
