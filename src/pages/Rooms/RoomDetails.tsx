@@ -17,6 +17,7 @@ import lgZoom from "lightgallery/plugins/zoom";
 import { TRoom } from "../../types/user.types";
 import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
 import { fadeIn } from "../../lib/motionVariant";
+import RelatedRooms from "./RelatedRooms";
 
 const RoomDetails: React.FC = () => {
   const { roomId } = useParams();
@@ -211,6 +212,7 @@ const RoomDetails: React.FC = () => {
           Book Now
         </Button>
       </CustomContainer>
+      <RelatedRooms category={roomData?.category} />
     </div>
   );
 };
