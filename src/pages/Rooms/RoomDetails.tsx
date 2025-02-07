@@ -1,12 +1,12 @@
 import React from "react";
 import { Link, useNavigate, useParams } from "react-router-dom";
 import { useGetSingleRoomQuery } from "../../redux/features/user/userAccess.api";
-import { Button } from "antd";
+import { Button, Spin } from "antd";
 import CustomContainer from "../../components/CustomContainer";
 import { motion } from "framer-motion";
 import { primaryButton } from "../../config/themeConfig";
 import "./RoomDetails.styles.css";
-
+import { FaArrowRightLong } from "react-icons/fa6";
 // light gallery styles
 import LightGallery from "lightgallery/react";
 import "lightgallery/css/lightgallery.css";
@@ -21,7 +21,9 @@ import { fadeIn } from "../../lib/motionVariant";
 const RoomDetails: React.FC = () => {
   const { roomId } = useParams();
   const navigate = useNavigate();
-  const { data } = useGetSingleRoomQuery(roomId as string);
+  const { data, isLoading: roomDataLoading } = useGetSingleRoomQuery(
+    roomId as string
+  );
 
   const roomData: TRoom = data?.data;
   const allDetailImages = data?.data?.detailImages || [];
@@ -37,10 +39,25 @@ const RoomDetails: React.FC = () => {
       ? [data?.data?.img, ...allDetailImages.slice(0, 3)]
       : [data?.data?.img, ...allDetailImages];
   console.log(roomData);
+  if (roomDataLoading) {
+    return (
+      <div
+        style={{
+          width: "100%",
+          minHeight: "100vh",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}
+      >
+        <Spin size="large" />
+      </div>
+    );
+  }
   return (
     <div style={{ minHeight: "100vh" }}>
       <CustomContainer>
-        <div className="room-details-container" style={{ margin: "100px 0px" }}>
+        <div className="room-details-container" style={{ marginTop: "100px" }}>
           <LightGallery
             speed={500}
             plugins={[lgThumbnail, lgZoom]}
@@ -68,7 +85,12 @@ const RoomDetails: React.FC = () => {
                 <img
                   src={image}
                   alt={`Room Image ${index + 1}`}
-                  style={{ width: "100%", height: "100%" }}
+                  style={{
+                    width: "100%",
+                    height: "100%",
+                    objectFit: "cover",
+                    objectPosition: "center",
+                  }}
                 />
               </Link>
             ))}
@@ -105,79 +127,89 @@ const RoomDetails: React.FC = () => {
                 </div>
 
                 {/* Info Part */}
-                <div>
-                  <p>
-                    <strong>Room No.</strong> <span>{data?.data?.roomNo}</span>
-                  </p>
-                  <p>
-                    <strong>Floor No.</strong>{" "}
-                    <span>{data?.data?.floorNo}</span>
-                  </p>
-                  <p>
-                    <strong>Capacity:</strong>{" "}
-                    <span>{data?.data?.capacity}</span>
-                  </p>
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "12px",
-                      alignItems: "center",
-                    }}
-                  >
-                    <h1
+                <div className="room-overview-container">
+                  <div>
+                    <p>Price Per Slot</p>
+                    <div
                       style={{
-                        fontWeight: "bolder",
-                        color: "#ff8400",
-                        fontSize: "32px",
+                        display: "flex",
+                        gap: "12px",
+                        alignItems: "center",
                       }}
                     >
-                      ${data?.data?.pricePerSlot}
-                    </h1>
-                    {roomData?.discount == 0 && (
-                      <h2 style={{ color: "#565656" }}>
-                        <del>
-                          <i>{roomData?.discount}%</i>
-                        </del>
-                      </h2>
-                    )}
-                    <strong>/Per Slot</strong>
-                  </div>
+                      <h1
+                        style={{
+                          fontWeight: "bolder",
+                          // color: "#ff8400",
+                          color: "#052893",
+                          fontSize: "32px",
+                        }}
+                      >
+                        ${data?.data?.pricePerSlot}
+                      </h1>
+                      {roomData?.discount > 0 && (
+                        <p style={{ color: "#565656", fontSize: "21px" }}>
+                          -{" "}
+                          <del>
+                            <i>{roomData?.discount}%</i>
+                          </del>
+                        </p>
+                      )}
+                    </div>
 
-                  {/* Rating part */}
-                  <div
-                    style={{
-                      display: "flex",
-                      gap: "5px",
-                      alignItems: "center",
-                    }}
-                  >
-                    <Rating
-                      style={{ maxWidth: 150 }}
-                      value={roomData?.avgRatings}
-                      itemStyles={myStarStyles}
-                      readOnly
-                    />
-                    <span>({roomData?.avgRatings?.toFixed(1)})</span>
+                    {/* Rating part */}
+                    <div
+                      style={{
+                        display: "flex",
+                        gap: "5px",
+                        alignItems: "center",
+                      }}
+                    >
+                      <Rating
+                        style={{ maxWidth: 150 }}
+                        value={roomData?.avgRatings}
+                        itemStyles={myStarStyles}
+                        readOnly
+                      />
+                      <span>({roomData?.avgRatings?.toFixed(1)})</span>
+                    </div>
+                  </div>
+                  <div>
+                    <p className="room-no">
+                      <FaArrowRightLong />
+                      Room No: {String(roomData?.roomNo).padStart(3, "0")}
+                    </p>
+                    <p className="room-no">
+                      <FaArrowRightLong />
+                      Floor No: {String(roomData?.floorNo).padStart(3, "0")}
+                    </p>
+                    <p className="room-no">
+                      <FaArrowRightLong /> Capacity:{" "}
+                      {String(roomData?.capacity).padStart(3, "0")}
+                    </p>
                   </div>
                 </div>
               </motion.div>
+              <div>
+                <h2 style={{ marginBottom: "8px" }}>Description</h2>
+                <p>{roomData?.description}</p>
 
-              <p>Description: {roomData?.description}</p>
-              <p>
-                <b>Details:</b> {roomData?.details}
-              </p>
+                <h2 style={{ marginBottom: "8px", marginTop: "24px" }}>
+                  Room Details
+                </h2>
+                <p>{roomData?.details}</p>
+              </div>
             </div>
-
-            <Button
-              type="primary"
-              size="large"
-              onClick={() => navigate(`/booking/${data?.data?._id}`)}
-              style={primaryButton}
-            >
-              Book Now
-            </Button>
           </div>
         </div>
+        <Button
+          type="primary"
+          size="large"
+          onClick={() => navigate(`/booking/${data?.data?._id}`)}
+          style={primaryButton}
+        >
+          Book Now
+        </Button>
       </CustomContainer>
     </div>
   );
