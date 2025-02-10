@@ -89,6 +89,11 @@
 }
 
 /* Room card styles */
+.cardContainer {
+  margin: 30px 0px;
+  overflow: hidden;
+  padding-bottom: 20px;
+}
 .roomCardWithoutAnimation {
   border-radius: 10px;
   background: #ffffff;
@@ -229,7 +234,6 @@
   .closedNav {
     display: flex;
   }
-
   .testimonialCard {
     flex-direction: row;
   }
@@ -250,5 +254,8 @@
   .serviceCardContainer {
     display: grid;
     grid-template-columns: repeat(4, 1fr);
+  }
+  .cardContainer {
+    overflow: visible;
   }
 }

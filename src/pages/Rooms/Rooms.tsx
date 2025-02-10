@@ -158,7 +158,7 @@ const Rooms: React.FC = () => {
               </div>
             ))}
 
-          <div style={{ margin: "30px 0px" }}>
+          <div className="cardContainer">
             <Row gutter={[15, 15]}>
               {allRoomsData?.data?.result?.map((room: TRoom, index: number) => (
                 <Col
@@ -172,6 +172,7 @@ const Rooms: React.FC = () => {
                     initial="hidden"
                     whileInView={"show"}
                     viewport={{ once: false, amount: 0.5 }}
+                    style={{ height: "100%" }}
                   >
                     <RoomCard room={room} />
                   </motion.div>

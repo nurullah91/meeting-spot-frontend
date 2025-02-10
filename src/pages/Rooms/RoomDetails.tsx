@@ -28,7 +28,7 @@ const RoomDetails: React.FC = () => {
 
   const roomData: TRoom = data?.data;
   const allDetailImages = data?.data?.detailImages || [];
-
+  console.log(roomData);
   const myStarStyles = {
     itemShapes: ThinRoundedStar,
     activeFillColor: "#ffb700",

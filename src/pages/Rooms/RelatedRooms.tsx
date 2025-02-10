@@ -51,7 +51,7 @@ export default function RelatedRooms({ category }: IRelatedRoomsProps) {
             Related rooms
           </h2>
 
-          <div style={{ margin: "30px 0px", overflow: "hidden" }}>
+          <div className="cardContainer">
             <Row gutter={[15, 15]}>
               {allRoomsData?.data?.result?.map((room: TRoom, index: number) => (
                 <Col
@@ -65,6 +65,7 @@ export default function RelatedRooms({ category }: IRelatedRoomsProps) {
                     initial="hidden"
                     whileInView={"show"}
                     viewport={{ once: false, amount: 0.5 }}
+                    style={{ height: "100%" }}
                   >
                     <RoomCard room={room} />
                   </motion.div>
