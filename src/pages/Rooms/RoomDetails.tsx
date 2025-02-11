@@ -20,6 +20,7 @@ import { fadeIn } from "../../lib/motionVariant";
 import RelatedRooms from "./RelatedRooms";
 import { FaRegCheckSquare } from "react-icons/fa";
 import { BiCategory } from "react-icons/bi";
+import DOMPurify from "dompurify";
 
 const RoomDetails: React.FC = () => {
   const { roomId } = useParams();
@@ -42,6 +43,9 @@ const RoomDetails: React.FC = () => {
       ? [data?.data?.img, ...allDetailImages.slice(0, 3)]
       : [data?.data?.img, ...allDetailImages];
   console.log(roomData);
+
+  const sanitizedDescription = DOMPurify.sanitize(roomData?.details);
+
   if (roomDataLoading) {
     return (
       <div
@@ -101,7 +105,7 @@ const RoomDetails: React.FC = () => {
 
           {/* Room Details Information part */}
           <div className="room-info">
-            <div style={{ marginBottom: "20px" }}>
+            <div>
               <motion.div variants={fadeIn("up", 0)} className="roomOverview">
                 {/* Name Part */}
                 <div>
@@ -146,7 +150,6 @@ const RoomDetails: React.FC = () => {
                       <h1
                         style={{
                           fontWeight: "bolder",
-                          // color: "#ff8400",
                           color: "#052893",
                           fontSize: "32px",
                         }}
@@ -197,18 +200,31 @@ const RoomDetails: React.FC = () => {
                 </div>
               </motion.div>
               <div>
-                <h2 style={{ marginBottom: "8px" }}>Description</h2>
+                <h2 style={{ marginBottom: "8px", color: "#052893" }}>
+                  Description
+                </h2>
                 <p>{roomData?.description}</p>
 
-                <h2 style={{ marginBottom: "8px", marginTop: "24px" }}>
-                  Room Details
+                <h2
+                  style={{
+                    marginBottom: "8px",
+                    marginTop: "24px",
+                    color: "#052893",
+                  }}
+                >
+                  Details
                 </h2>
-                <p>{roomData?.details}</p>
+                <div
+                  dangerouslySetInnerHTML={{ __html: sanitizedDescription }}
+                />
               </div>
             </div>
           </div>
 
           <div className="amenitiesContainer">
+            <h3>
+              <strong>Amenities:</strong>
+            </h3>
             {roomData?.amenities?.map((item: string, index: number) => (
               <div key={index} className="amenities">
                 <FaRegCheckSquare style={{ color: "#2f54c7" }} />
