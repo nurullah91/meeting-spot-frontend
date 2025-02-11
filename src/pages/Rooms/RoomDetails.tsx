@@ -18,6 +18,8 @@ import { TRoom } from "../../types/user.types";
 import { Rating, ThinRoundedStar } from "@smastrom/react-rating";
 import { fadeIn } from "../../lib/motionVariant";
 import RelatedRooms from "./RelatedRooms";
+import { FaRegCheckSquare } from "react-icons/fa";
+import { BiCategory } from "react-icons/bi";
 
 const RoomDetails: React.FC = () => {
   const { roomId } = useParams();
@@ -103,7 +105,6 @@ const RoomDetails: React.FC = () => {
               <motion.div variants={fadeIn("up", 0)} className="roomOverview">
                 {/* Name Part */}
                 <div>
-                  <h4>{roomData?.category}</h4>
                   <motion.h1
                     whileHover={{ scale: 1.05 }}
                     transition={{ duration: 0.3 }}
@@ -112,18 +113,22 @@ const RoomDetails: React.FC = () => {
                       fontWeight: "bold",
                       color: "#052893",
                       textShadow: "-3px 2px 10px #444442",
-                      marginBottom: "15px",
+                      marginBottom: "8px",
                     }}
                   >
                     {data?.data?.name}
                   </motion.h1>
-                  <div>
-                    <p>
-                      <strong>Amenities:</strong>{" "}
-                      <span style={{ color: "#052893" }}>
-                        {data?.data?.amenities.join(", ")}
-                      </span>
-                    </p>
+                  <div
+                    style={{
+                      display: "flex",
+                      gap: "4px",
+                      marginBottom: "12px",
+                      alignItems: "center",
+                      fontSize: "18px",
+                    }}
+                  >
+                    <BiCategory />
+                    <span>{roomData?.category}</span>
                   </div>
                 </div>
 
@@ -201,6 +206,15 @@ const RoomDetails: React.FC = () => {
                 <p>{roomData?.details}</p>
               </div>
             </div>
+          </div>
+
+          <div className="amenitiesContainer">
+            {roomData?.amenities?.map((item: string, index: number) => (
+              <div key={index} className="amenities">
+                <FaRegCheckSquare style={{ color: "#2f54c7" }} />
+                <span>{item}</span>
+              </div>
+            ))}
           </div>
         </div>
         <Button

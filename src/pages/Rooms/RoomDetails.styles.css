@@ -44,6 +44,18 @@
   align-items: start;
 }
 
+.amenitiesContainer {
+  display: flex;
+  gap: 12px;
+  margin: 12px 0;
+}
+
+.amenities {
+  display: flex;
+  gap: 4px;
+  font-size: 18px;
+}
+
 /* Tablet responsive breakpoints */
 @media only screen and (min-width: 768px) {
   .image-gallery {
